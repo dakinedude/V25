@@ -1,0 +1,14 @@
+b = false;
+int x = 0;
+
+&& = AND
+|| = OR
+
+1. b && x == 0 (FALSE)
+2. b || x == 0 (TRUE)
+3. !b && x == 0 (TRUE)
+4. !b || x == 0 (TRUE)
+5. b && x != 0 (FALSE)
+6. b || x != 0 (FALSE)
+7. !b && x != 0 (FALSE)
+8. !b || x != 0 (TRUE)

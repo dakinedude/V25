@@ -1,0 +1,4 @@
+a) returnerer void
+b) returnerer int
+c) returnerer double
+d) returnerer String

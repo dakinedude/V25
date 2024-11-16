@@ -1,0 +1,61 @@
+* JAVA CHEATSHEET
+
+*** Bruker-input ***
+- import java.util.Scanner;
+- Scanner input = new Scanner(System.in);
+- lagre = Type.parseType(input.nextLine());
+  (parseInt, parseDouble, IKKE parseString!!!)
+- lagre = input.nextInt();
+  Denne ignorer whitespace paa begynnelse
+
+*** Arrays ***
+- Type[] navn = new Type[n]
+- Type[] navn = {1,2,3}
+- navn.length
+
+*** Klasser ***
+- Konstruktoer:
+  public Navn(parametre)
+- `this` = `self` i Python
+  god praksis aa alltid bruke `this`
+
+*** Lese fra fil ***
+- importer java.io.File, FileNotFoundException, Scanner
+- throws Exception paa main
+- File fil = new File(`path`);
+- Scanner leser = new Scanner(fil);
+- while (leser.hasNextLine())
+- data = leser.nextLine();
+- leser.close();
+
+*** Array-list ***
+Som lister i Python
+- import java.util.ArrayList;
+- ArrayList<String> cars = new ArrayList<String>();
+- .add(optionalpos, item)
+- .get(pos)
+- .set(pos, item) endrer verdi
+- .remove(pos), .size()
+
+*** Hash-maps ***
+Dict
+- import java.util.HashMap;
+- HashMap<String, String> navn = new HashMap<String, String>();
+- .put(key, value)
+- .get(key), size(), clear()
+
+- 
+* TEORI *
+*** static ***
+
+- Et statisk felt finnes kun en gang
+- Et felt er variablene som tilhoerer klassen
+- Feltet er felles for alle objektene
+- En slags "klasse-variabel" (konstant metode)
+- Man kan aksessere statiske felt UTEN et objekt paa klassen (`Person.MYNDIG_ALDER`)
+- main er alltid static, fordi vi ikke vil opprette et objekt for aa kjoere klassen
+- Skrives ofte i ALL CAPS
+- Kan brukes inne i metoden, men ikke sammen med `.this`
+
+*** Mutability ***
+- Alle legacy-klasser er immutable

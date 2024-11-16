@@ -1,0 +1,2 @@
+a) et array, eller en arraylist, passer best til en billettkoe
+b) en hashmap passer best til et personregister
