@@ -31,10 +31,6 @@ class hashMaps {
         for (String s: ordBok.values()) {
             System.out.println(s);
         }
-                
-               
-
-        
     }
 }
             
