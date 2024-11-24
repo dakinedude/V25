@@ -7,7 +7,6 @@ class Main {
         String filnavn = args[0];
         File fil = new File(filnavn);
         Skattejakt skattejakt = Skattejakt.lesInn(fil);
-        skattejakt.skrivUt();
 
         Scanner input = new Scanner(System.in);
         String[] inputArray = new String[2];

@@ -18,6 +18,7 @@ public class Skattejakt {
         this.bredde = bredde;
         this.skattHoyde = rand.nextInt(this.hoyde - 1);
         this.skattBredde = rand.nextInt(this.bredde - 1);
+        System.out.println(this.skattHoyde + " " + this.skattBredde);
     }
 
     private void vinner() {
@@ -34,11 +35,14 @@ public class Skattejakt {
     }
 
     public boolean sjekk(int rad, int kol) {
-        System.out.println(this.skattHoyde + " " + this.skattBredde);
         if (rad == this.skattHoyde && kol == this.skattBredde) {
             this.vinner();
             return true;
+        } else if (rad < 0 || rad > this.hoyde - 1 || kol < 0 || kol > this.bredde - 1) {
+            System.out.println(String.format("Bruk: h b, hvor hoyde er mellom 0 og %d og bredde er mellom 0 og %d", this.hoyde, this.bredde));
+            return false;
         } else {
+            System.out.println("Feil");
             return false;
         }
     }
@@ -62,10 +66,8 @@ public class Skattejakt {
         char[][] kart = new char[hoyde][bredde];
 
         for (int i = 0; i < hoyde; i++) {
-            int j = 0;
-            for (char c : temp.toCharArray()) {
-                kart[i][j] = c;
-                j++;
+            for (int j = 0; j < bredde; j++) {
+                kart[i][j] = temp.charAt(j);
             }
         }
 
@@ -76,7 +78,7 @@ public class Skattejakt {
 
     public void skrivUt() {
         for (int x = 0; x < this.hoyde; x++) {
-            for (int y = 0; y < this.hoyde; y++) {
+            for (int y = 0; y < this.bredde; y++) {
                 System.out.print(this.kart[x][y]);
             }
             System.out.println();
