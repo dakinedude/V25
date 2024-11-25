@@ -1,0 +1,14 @@
+figur()
+rekt(lengde, bredde)
+kvad(sidelengde) -> super(sidelengde, sidelengde)
+sirkel(radius)
+trekant(grunnlinje, hoyde)
+
+
+
+           FIGUR
+             |
+            /|\
+        rekt | \
+          /  |  \
+      kvad  sirk  trekant

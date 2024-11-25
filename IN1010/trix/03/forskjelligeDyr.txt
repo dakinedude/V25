@@ -1,0 +1,6 @@
+virveldyr
+pattedyr extends virveldyr
+primat extends pattedyr
+
+virveldyr
+fisk extends virveldyr
