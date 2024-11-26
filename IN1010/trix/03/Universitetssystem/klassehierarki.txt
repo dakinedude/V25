@@ -1,0 +1,22 @@
+Person
+├── navn: String
+├── alder: Int
+│
+├── Student (extends Person)
+│   ├── kurs: String
+│   ├── sted: String
+│
+├── Bachelorstudent (extends Student)
+│   ├── tilgangEtterStengetid: Boolean = false
+│
+├── Masterstudent (extends Student)
+│   ├── tilgangEtterStengetid: Boolean = true
+│
+├── Ansatt (extends Person)
+│   ├── timeloenn: Double
+│
+├── Forsker (extends Ansatt)
+│   ├── fagomraade: String
+│
+└── Professor (extends Forsker)
+    ├── kurs: String

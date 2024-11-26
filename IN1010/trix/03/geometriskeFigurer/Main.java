@@ -1,10 +1,10 @@
 class Main {
 
     public static void main(String[] args) {
-        Trekant t = new Trekant(3,2);
-        Sirkel s = new Sirkel(3);
-        Rektangel r = new Rektangel(3, 7);
-        Kvadrat k = new Kvadrat(4);
+        Figur t = new Trekant(3,2);
+        Figur s = new Sirkel(3);
+        Figur r = new Rektangel(3, 7);
+        Figur k = new Kvadrat(4);
 
         Figur[] figurer = {t, s, r, k};
 
