@@ -1,0 +1,7 @@
+_____________
+|SumHeltall |
+|           |
+| int a -------> System.out.println(a + b);
+| int b ------->
+|           |
+|___________|

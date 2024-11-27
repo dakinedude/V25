@@ -1,0 +1,23 @@
+a) instanceof kan brukes for aa sjekke om et objekt er en instans av en gitt klasse.
+
+Det fungerer bra for aa sikre at et objekt er av en gitt type foer casting
+
+Det fungerer ikke bra hvis vi kan bruke polimorfi. F.eks. hvis alle objektene i et array er subklasser, og kan override en metode.
+
+b) Vi kan alltid konvertere fra en referanse til en subklasse til en superklasse. Dette heter upcasting.
+
+Eks.:
+
+Hund hund = new Hund();
+Dyr hund = hund;
+
+c) Vi kan ikke alltid konvertere fra en referanse til en superklasse til en referanse til en subklasse (downcasting).
+
+Dette kan kun gjoeres i spesielle tilfeller.
+
+Eksempel:
+
+Dyr dyr = new Hund();
+Hund dyr = (Hund) dyr;
+
+d) Alternativer til arv: Komposisjon, interface.

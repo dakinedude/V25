@@ -1,0 +1,36 @@
+a)
+
+1 er lov
+2 er lov
+3 er lov
+4 er ikke lov
+5 er lov
+6 er ikke lov
+
+b)
+class S {}
+class G extends S {}
+class B extends S {}
+class Q extends B {}
+
+S q = new G(); lov
+Q b = new Q(); lov 
+B s = new Q(); lov
+B g = new B(); lov
+S p = new B(); lov
+
+
+q instanceof G
+q instanceof S
+b instanceof B
+b instanceof S
+s instanceof B
+g instanceof S
+p instanceof S
+p instanceof G
+
+A er ikke lov
+B er ikke lov
+C er lov
+D er lov
+E er lov 

@@ -1,3 +1,5 @@
+abstract hentNavn, hentAlder, hentRolle
+
 Person
 ├── navn: String
 ├── alder: Int
