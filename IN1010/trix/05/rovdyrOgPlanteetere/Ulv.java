@@ -1,0 +1,1 @@
+class Ulv extends Rovdyr{}

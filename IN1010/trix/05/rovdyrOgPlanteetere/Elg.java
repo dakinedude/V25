@@ -1,0 +1,1 @@
+class Elg extends Planteeter{}

@@ -1,0 +1,1 @@
+class Bjorn extends Rovdyr{}
