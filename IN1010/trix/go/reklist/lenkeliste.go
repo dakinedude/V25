@@ -9,6 +9,8 @@ type node struct {
 	neste *node
 }
 
+// TODO legge til errors?
+
 func (l *Lenkeliste) LeggTil(ny any) {
 	node := &node{data: ny, neste: nil}
 	if l.start == nil {

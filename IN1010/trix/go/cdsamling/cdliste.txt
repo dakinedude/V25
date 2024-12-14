@@ -1,0 +1,107 @@
+Oasis,(What's the Story) Morning Glory?,1995
+Michael Jackson,Thriller,1982
+AC/DC,Back in Black,1980
+Pink Floyd,The Dark Side of the Moon,1973
+Meat Loaf,Bat Out of Hell,1977
+Whitney Houston / Various artists,The Bodyguard,1992
+Eagles,Their Greatest Hits (1971-1975),1976
+Bee Gees / Various artists,Saturday Night Fever,1977
+Fleetwood Mac,Rumours,1977
+The Beatles,Abbey Road,1969
+Led Zeppelin,IV,1971
+Queen,Greatest Hits,1981
+Elton John,Goodbye Yellow Brick Road,1973
+The Rolling Stones,Sticky Fingers,1971
+David Bowie,The Rise and Fall of Ziggy Stardust and the Spiders from Mars,1972
+U2,The Joshua Tree,1987
+The Doors,The Doors,1967
+Nirvana,Nevermind,1991
+Bob Marley and the Wailers,Legend,1984
+Bruce Springsteen,Born to Run,1975
+Prince,Purple Rain,1984
+The Who,Who's Next,1971
+Bruce Springsteen,Dancing in the Dark,1984
+The Beach Boys,Pet Sounds,1966
+Simon & Garfunkel,Bridge Over Troubled Water,1970
+Pink Floyd,The Wall,1979
+Adele,21,2011
+Amy Winehouse,Back to Black,2006
+Led Zeppelin,Physical Graffiti,1975
+Frank Sinatra,In the Wee Small Hours,1955
+Aretha Franklin,The Queen of Soul,1961
+Miles Davis,Kind of Blue,1959
+Stevie Wonder,Innervisions,1973
+The Clash,London Calling,1979
+Jimi Hendrix,Are You Experienced,1967
+Janis Joplin,Cheap Thrills,1968
+The Police,Synchronicity,1983
+AC/DC,Highway to Hell,1979
+The Velvet Underground,The Velvet Underground & Nico,1967
+Fleetwood Mac,The Dance,1997
+Radiohead,OK Computer,1997
+The Rolling Stones,Exile on Main St.,1972
+Bob Dylan,Highway 61 Revisited,1965
+The Eagles,Hotel California,1976
+The Beatles,Revolver,1966
+The Who,Tommy,1969
+Steely Dan,Aja,1977
+Frank Ocean,Channel Orange,2012
+Sade,Diamond Life,1984
+R.E.M.,Automatic for the People,1992
+Coldplay,A Rush of Blood to the Head,2002
+Billie Holiday,The Ultimate Collection,1996
+Norah Jones,Come Away with Me,2002
+Van Morrison,Moon Dance,1970
+The Rolling Stones,Let It Bleed,1969
+Jackson 5,The Jackson 5: Ultimate Collection,2001
+Sheryl Crow,Tuesday Music Club,1993
+The Smiths,The Queen Is Dead,1986
+Lynyrd Skynyrd,Pronounced Leh-Nerd Skin-Nerd,1973
+Johnny Cash,At Folsom Prison,1968
+Elvis Presley,Elvis Presley,1956
+Kurt Cobain,Montage of Heck (Soundtrack),2015
+Red Hot Chili Peppers,Californication,1999
+The Strokes,Is This It,2001
+Eminem,The Marshall Mathers LP,2000
+Kanye West,The College Dropout,2004
+Dr. Dre,The Chronic,1992
+Jay-Z,The Blueprint,2001
+The Notorious B.I.G.,Ready to Die,1994
+OutKast,Stankonia,2000
+Nas,Illmatic,1994
+Snoop Dogg,Doggystyle,1993
+Public Enemy,It Takes a Nation of Millions to Hold Us Back,1988
+Tupac Shakur,All Eyez on Me,1996
+Metallica,The Black Album,1991
+Iron Maiden,The Number of the Beast,1982
+Black Sabbath,Paranoid,1970
+Ozzy Osbourne,Blizzard of Ozz,1980
+Megadeth,Rust in Peace,1990
+Slayer,Reign in Blood,1986
+Anthrax,Among the Living,1987
+Linkin Park,Hybrid Theory,2000
+Green Day,Dookie,1994
+The Offspring,Smash,1998
+Foo Fighters,The Colour and the Shape,1997
+Blur,Parklife,1994
+Radiohead,In Rainbows,2007
+The Killers,Hot Fuss,2004
+The Arctic Monkeys,Whatever People Say I Am,That's What I'm Not,2006
+The Strokes,Room on Fire,2003
+The White Stripes,Elephant,2003
+Kings of Leon,Only by the Night,2008
+The Black Keys,El Camino,2011
+Mumford & Sons,Sigh No More,2009
+Vampire Weekend,Vampire Weekend,2008
+The National,High Violet,2010
+Arcade Fire,Funeral,2004
+LCD Soundsystem,Sound of Silver,2007
+Daft Punk,Discovery,2001
+The Chemical Brothers,Dig Your Own Hole,1997
+Deadmau5,4x4=12,2010
+Portishead,Dummy,1994
+Massive Attack,Blue Lines,1991
+The Prodigy,The Fat of the Land,1997
+M.I.A.,Kala,2007
+Kanye West,My Beautiful Dark Twisted Fantasy,2010
+Frank Ocean,Blonde,2016

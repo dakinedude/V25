@@ -1,0 +1,107 @@
+Artist: Oasis | Tittel: (What's the Story) Morning Glory? | Utgitt: 1995
+Artist: Adele | Tittel: 21 | Utgitt: 2011
+Artist: Deadmau5 | Tittel: 4x4=12 | Utgitt: 2010
+Artist: Coldplay | Tittel: A Rush of Blood to the Head | Utgitt: 2002
+Artist: The Beatles | Tittel: Abbey Road | Utgitt: 1969
+Artist: Steely Dan | Tittel: Aja | Utgitt: 1977
+Artist: Tupac Shakur | Tittel: All Eyez on Me | Utgitt: 1996
+Artist: Anthrax | Tittel: Among the Living | Utgitt: 1987
+Artist: Jimi Hendrix | Tittel: Are You Experienced | Utgitt: 1967
+Artist: Johnny Cash | Tittel: At Folsom Prison | Utgitt: 1968
+Artist: R.E.M. | Tittel: Automatic for the People | Utgitt: 1992
+Artist: AC/DC | Tittel: Back in Black | Utgitt: 1980
+Artist: Amy Winehouse | Tittel: Back to Black | Utgitt: 2006
+Artist: Meat Loaf | Tittel: Bat Out of Hell | Utgitt: 1977
+Artist: Ozzy Osbourne | Tittel: Blizzard of Ozz | Utgitt: 1980
+Artist: Frank Ocean | Tittel: Blonde | Utgitt: 2016
+Artist: Massive Attack | Tittel: Blue Lines | Utgitt: 1991
+Artist: Bruce Springsteen | Tittel: Born to Run | Utgitt: 1975
+Artist: Simon & Garfunkel | Tittel: Bridge Over Troubled Water | Utgitt: 1970
+Artist: Red Hot Chili Peppers | Tittel: Californication | Utgitt: 1999
+Artist: Frank Ocean | Tittel: Channel Orange | Utgitt: 2012
+Artist: Janis Joplin | Tittel: Cheap Thrills | Utgitt: 1968
+Artist: Norah Jones | Tittel: Come Away with Me | Utgitt: 2002
+Artist: Bruce Springsteen | Tittel: Dancing in the Dark | Utgitt: 1984
+Artist: Sade | Tittel: Diamond Life | Utgitt: 1984
+Artist: The Chemical Brothers | Tittel: Dig Your Own Hole | Utgitt: 1997
+Artist: Daft Punk | Tittel: Discovery | Utgitt: 2001
+Artist: Snoop Dogg | Tittel: Doggystyle | Utgitt: 1993
+Artist: Green Day | Tittel: Dookie | Utgitt: 1994
+Artist: Portishead | Tittel: Dummy | Utgitt: 1994
+Artist: The Black Keys | Tittel: El Camino | Utgitt: 2011
+Artist: The White Stripes | Tittel: Elephant | Utgitt: 2003
+Artist: Elvis Presley | Tittel: Elvis Presley | Utgitt: 1956
+Artist: The Rolling Stones | Tittel: Exile on Main St. | Utgitt: 1972
+Artist: Arcade Fire | Tittel: Funeral | Utgitt: 2004
+Artist: Elton John | Tittel: Goodbye Yellow Brick Road | Utgitt: 1973
+Artist: Queen | Tittel: Greatest Hits | Utgitt: 1981
+Artist: The National | Tittel: High Violet | Utgitt: 2010
+Artist: Bob Dylan | Tittel: Highway 61 Revisited | Utgitt: 1965
+Artist: AC/DC | Tittel: Highway to Hell | Utgitt: 1979
+Artist: The Killers | Tittel: Hot Fuss | Utgitt: 2004
+Artist: The Eagles | Tittel: Hotel California | Utgitt: 1976
+Artist: Linkin Park | Tittel: Hybrid Theory | Utgitt: 2000
+Artist: Led Zeppelin | Tittel: IV | Utgitt: 1971
+Artist: Nas | Tittel: Illmatic | Utgitt: 1994
+Artist: Radiohead | Tittel: In Rainbows | Utgitt: 2007
+Artist: Frank Sinatra | Tittel: In the Wee Small Hours | Utgitt: 1955
+Artist: Stevie Wonder | Tittel: Innervisions | Utgitt: 1973
+Artist: The Strokes | Tittel: Is This It | Utgitt: 2001
+Artist: Public Enemy | Tittel: It Takes a Nation of Millions to Hold Us Back | Utgitt: 1988
+Artist: M.I.A. | Tittel: Kala | Utgitt: 2007
+Artist: Miles Davis | Tittel: Kind of Blue | Utgitt: 1959
+Artist: Bob Marley and the Wailers | Tittel: Legend | Utgitt: 1984
+Artist: The Rolling Stones | Tittel: Let It Bleed | Utgitt: 1969
+Artist: The Clash | Tittel: London Calling | Utgitt: 1979
+Artist: Kurt Cobain | Tittel: Montage of Heck (Soundtrack) | Utgitt: 2015
+Artist: Van Morrison | Tittel: Moon Dance | Utgitt: 1970
+Artist: Kanye West | Tittel: My Beautiful Dark Twisted Fantasy | Utgitt: 2010
+Artist: Nirvana | Tittel: Nevermind | Utgitt: 1991
+Artist: Radiohead | Tittel: OK Computer | Utgitt: 1997
+Artist: Kings of Leon | Tittel: Only by the Night | Utgitt: 2008
+Artist: Black Sabbath | Tittel: Paranoid | Utgitt: 1970
+Artist: Blur | Tittel: Parklife | Utgitt: 1994
+Artist: The Beach Boys | Tittel: Pet Sounds | Utgitt: 1966
+Artist: Led Zeppelin | Tittel: Physical Graffiti | Utgitt: 1975
+Artist: Lynyrd Skynyrd | Tittel: Pronounced Leh-Nerd Skin-Nerd | Utgitt: 1973
+Artist: Prince | Tittel: Purple Rain | Utgitt: 1984
+Artist: The Notorious B.I.G. | Tittel: Ready to Die | Utgitt: 1994
+Artist: Slayer | Tittel: Reign in Blood | Utgitt: 1986
+Artist: The Beatles | Tittel: Revolver | Utgitt: 1966
+Artist: The Strokes | Tittel: Room on Fire | Utgitt: 2003
+Artist: Fleetwood Mac | Tittel: Rumours | Utgitt: 1977
+Artist: Megadeth | Tittel: Rust in Peace | Utgitt: 1990
+Artist: Bee Gees / Various artists | Tittel: Saturday Night Fever | Utgitt: 1977
+Artist: Mumford & Sons | Tittel: Sigh No More | Utgitt: 2009
+Artist: The Offspring | Tittel: Smash | Utgitt: 1998
+Artist: LCD Soundsystem | Tittel: Sound of Silver | Utgitt: 2007
+Artist: OutKast | Tittel: Stankonia | Utgitt: 2000
+Artist: The Rolling Stones | Tittel: Sticky Fingers | Utgitt: 1971
+Artist: The Police | Tittel: Synchronicity | Utgitt: 1983
+Artist: Metallica | Tittel: The Black Album | Utgitt: 1991
+Artist: Jay-Z | Tittel: The Blueprint | Utgitt: 2001
+Artist: Whitney Houston / Various artists | Tittel: The Bodyguard | Utgitt: 1992
+Artist: Dr. Dre | Tittel: The Chronic | Utgitt: 1992
+Artist: Kanye West | Tittel: The College Dropout | Utgitt: 2004
+Artist: Foo Fighters | Tittel: The Colour and the Shape | Utgitt: 1997
+Artist: Fleetwood Mac | Tittel: The Dance | Utgitt: 1997
+Artist: Pink Floyd | Tittel: The Dark Side of the Moon | Utgitt: 1973
+Artist: The Doors | Tittel: The Doors | Utgitt: 1967
+Artist: The Prodigy | Tittel: The Fat of the Land | Utgitt: 1997
+Artist: Jackson 5 | Tittel: The Jackson 5: Ultimate Collection | Utgitt: 2001
+Artist: U2 | Tittel: The Joshua Tree | Utgitt: 1987
+Artist: Eminem | Tittel: The Marshall Mathers LP | Utgitt: 2000
+Artist: Iron Maiden | Tittel: The Number of the Beast | Utgitt: 1982
+Artist: The Smiths | Tittel: The Queen Is Dead | Utgitt: 1986
+Artist: Aretha Franklin | Tittel: The Queen of Soul | Utgitt: 1961
+Artist: David Bowie | Tittel: The Rise and Fall of Ziggy Stardust and the Spiders from Mars | Utgitt: 1972
+Artist: Billie Holiday | Tittel: The Ultimate Collection | Utgitt: 1996
+Artist: The Velvet Underground | Tittel: The Velvet Underground & Nico | Utgitt: 1967
+Artist: Pink Floyd | Tittel: The Wall | Utgitt: 1979
+Artist: Eagles | Tittel: Their Greatest Hits (1971-1975) | Utgitt: 1976
+Artist: Michael Jackson | Tittel: Thriller | Utgitt: 1982
+Artist: The Who | Tittel: Tommy | Utgitt: 1969
+Artist: Sheryl Crow | Tittel: Tuesday Music Club | Utgitt: 1993
+Artist: Vampire Weekend | Tittel: Vampire Weekend | Utgitt: 2008
+Artist: The Arctic Monkeys | Tittel: Whatever People Say I Am | Utgitt: That's What I'm Not
+Artist: The Who | Tittel: Who's Next | Utgitt: 1971
