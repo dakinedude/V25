@@ -1,0 +1,3 @@
+interface toString {
+    String ToString();
+}
