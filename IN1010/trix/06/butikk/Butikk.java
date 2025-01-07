@@ -1,4 +1,6 @@
-class Butikk {
+import java.util.Iterator;
+
+class Butikk implements Iterable<Person> {
     Person start;
 
     public Butikk(Person start) {
@@ -16,6 +18,30 @@ class Butikk {
             tmp = tmp.HentNeste();
         }
         tmp.SettNeste(p);
+    }
+
+    public Iterator<Person> iterator() {
+        return new PersonIterator();
+    }
+
+    class PersonIterator implements Iterator<Person> {
+        private Person denne;
+
+        public PersonIterator() {
+            denne = start;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return denne != null;
+        }
+
+        @Override
+        public Person next() {
+            Person temp = denne;
+            denne = denne.HentNeste();
+            return temp;
+        }
     }
 
     public void Kassa() {

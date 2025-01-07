@@ -3,6 +3,11 @@ class Person {
     String gjenstand;
     Person neste;
 
+    @Override
+    public String toString() {
+        return this.navn;
+    }
+
     public Person(String navn, String gjenstand, Person neste) {
         this.navn = navn;
         this.gjenstand = gjenstand;

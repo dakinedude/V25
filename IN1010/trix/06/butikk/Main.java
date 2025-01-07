@@ -14,6 +14,10 @@ class Main {
             b.EntreButikk(person);
         }
 
+        for (Person person : b) {
+            System.out.println(person);
+        }
+
         b.Kassa();
     }
 }
