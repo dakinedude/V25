@@ -1,0 +1,8 @@
+Artistnavn: AC/DC, Albumnavn: BACK IN BLACK, Utgitt: 1980 
+Artistnavn: Bee Gees / Various artists, Albumnavn: SATURDAY NIGHT FEVER, Utgitt: 1977 
+Artistnavn: Eagles, Albumnavn: THEIR GREATEST HITS (1971-1975), Utgitt: 1976 
+Artistnavn: Fleetwood Mac, Albumnavn: RUMOURS, Utgitt: 1977 
+Artistnavn: Meat Loaf, Albumnavn: BAT OUT OF HELL, Utgitt: 1977 
+Artistnavn: Michael Jackson, Albumnavn: THRILLER, Utgitt: 1982 
+Artistnavn: Pink Floyd, Albumnavn: THE DARK SIDE OF THE MOON, Utgitt: 1973	 
+Artistnavn: Whitney Houston / Various artists, Albumnavn: THE BODYGUARD, Utgitt: 1992 
