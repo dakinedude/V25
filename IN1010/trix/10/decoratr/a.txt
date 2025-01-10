@@ -1,0 +1,11 @@
+a)
+
+Selskapet som tilbyr studentboliger, tilbyr boliger til
+ulike priser, basert paa hvilke fasiliteter de har tilgjengelig, osv.
+
+Alle boliger har et sett med grunnkostnader, men en bolig med
+skyline view prises til hoeyere pris. Likevel vil en familiebolig
+paa foerste etasje prises til mer enn en singelbolig med skyline.
+
+Slik kan decorator-moensteret implementeres, ved at boliger ilegges
+attributter, for deretter aa oeke i pris.
