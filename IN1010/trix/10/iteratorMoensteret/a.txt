@@ -1,0 +1,9 @@
+a) iterator-moensteret lar oss vandre over en samling,
+uten aa blotte for brukeren dens underliggende struktur.
+
+Iterator-moensteret er et atferdsmoenster.
+
+Det abstraherer bort iterasjonslogikken, og gjoer det lett
+aa endre implm. uten aa paavirke underliggende logikk.
+
+Dette samsvarer med beskrivelsen for atferdsmoenstre.

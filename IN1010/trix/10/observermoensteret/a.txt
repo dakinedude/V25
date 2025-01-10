@@ -1,0 +1,10 @@
+a) Observer moensteret er et atferdsmoenster som kjennetegnes ved et subject og en observatoer.
+
+Subjectet oppdaterer observatoerens/observatoerenes tilstand.
+
+En nyttig applikasjon er en social media-feed.
+
+Ikke alle oensker oppdateringen for naar en spesifikk bruker poster.
+
+De ulike observatoerene har individuelle instillinger for hvordan de skal reagere (og sende ut notifications) til brukeren,
+naar den spesifikke brukeren poster.
