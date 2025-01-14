@@ -1,0 +1,4 @@
+foer hver iterasjon, har alle observatoerer fra
+0 til i blitt oppdatert.
+
+etter alle iterasjoner, har alle observatoerer blitt oppdatert.

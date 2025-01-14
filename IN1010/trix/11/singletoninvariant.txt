@@ -1,0 +1,8 @@
+invarianten er at Singleton-klassen alltid vil returnere
+een og samme instans av Singleton.
+
+Hvis den ikke er inisjialisert, vil den inisjialiseres.
+
+Og deretter vil alltid kun denne instans returneres.
+
+I kjoeretiden til programmet vil det kun finnes en instans.

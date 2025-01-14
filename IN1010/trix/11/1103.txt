@@ -1,0 +1,15 @@
+linje 5:
+
+arr1 og arr2 er inisjialisert, men hvert element peker paa
+null-verdien.
+
+Foerste for-loop:
+
+For hver iterasjon inisjialiseres et nytt objekt, og settes inn
+paa plassen. Til slutt er hele array-et opptatt.
+
+Andre for-loop:
+
+Elementene fra arr1 kopieres til arr2.
+
+men hver plass i arr1 erstattes med null.

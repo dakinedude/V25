@@ -1,0 +1,10 @@
+a) invarianter er logiske tilstander som skal evaluere til sann
+
+b)c) vi bruker invarianter til aa sjekke at datastrukturer og objekters
+logikk er implementert korrekt/ at de haandterer edge cases
+
+d) en invariant for en lenkeliste er f.eks. at en nodes neste
+nodes forrige node, er seg selv
+
+e) en invariant for en for-loekke er f.eks. at hver iterasjon
+genererer et fibonacci-tall

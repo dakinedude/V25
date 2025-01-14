@@ -1,0 +1,13 @@
+a)
+
+Foer et element er satt inn:
+
+foerste og siste er lik null.
+
+Etter et element er satt inn:
+
+En ny node opprettes. Foerste og siste er denne noden.
+
+b)
+
+Tilstanden endres ikke.
