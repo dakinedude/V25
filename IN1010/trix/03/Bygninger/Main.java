@@ -1,6 +1,8 @@
 class Main {
     public static void main(String[] args) {
-        Bygning b = new Bygning(20, 40);
+        int x = Integer.parseInt(args[0]);
+        int y = Integer.parseInt(args[1]);
+        Bygning b = new Bygning(x,y);
         Skyskraper s = new Skyskraper(50, 30, 15);
 
         b.infoBygning();
