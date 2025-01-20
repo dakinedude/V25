@@ -1,0 +1,22 @@
+in nat-add.maude
+
+fmod SQUARE is
+    protecting NAT-ADD .
+
+    op sqr : Nat -> Nat .
+
+    var N : Nat .
+    
+    eq sqr(0) = 0 .
+
+    eq sqr(s(N)) = sqr(N) + s(N) + N .
+endfm
+
+*** it works, because last N = s(N) - 1
+*** n^2 = (n-1)^2 + n + n - 1
+
+red sqr(s(s(0))) .
+red sqr(s(0)) .
+red sqr(s(s(s(0)))) .
+
+

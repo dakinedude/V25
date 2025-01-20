@@ -1,0 +1,26 @@
+1. Such overloading is allowed, since each 0 is part of a seperate
+set of function symbols with different value sorts
+
+`ops 0 1 : -> Bit` = 
+sigma_emptylist_Bit
+
+`ops 0 1 : -> Boolean` =
+sigma_emptylist_Boolean
+
+`op 0 : -> Nat` =
+sigma_emptylist_Nat
+
+2. To disallow, each function symbol can only have one
+unique arity and value sort.
+
+3. Neither. f(f(a)) computes to f(s'), but f is only defined for
+sorts s.
+
+4.
+
+s(s(0 + s(0))) + 0
+-> s(s(0 + s(0)) + 0)
+-> s(s(s(0)) + 0)
+-> s(s(s(0) + 0))
+-> s(s(s(0 + 0)))
+-> s(s(s(0)))

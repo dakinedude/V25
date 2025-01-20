@@ -1,0 +1,43 @@
+in nat-add.maude
+
+set include BOOL off .
+
+fmod BOOLEAN is
+    sort Boolean .
+    ops true false : -> Boolean [ctor] .
+    op not_ : Boolean -> Boolean [prec 53] .
+    op _and_ : Boolean Boolean -> Boolean [prec 55] .
+    op _or_ : Boolean Boolean -> Boolean [prec 59] .
+
+    var B : Boolean .
+    eq not_(false) = true .
+    eq not_(true) = false .
+    eq (true and B) = B .
+    eq (false and B) = false .
+    eq (false or B) = B .
+    eq (true or B) = true .
+endfm
+       
+fmod NAT< is
+    protecting NAT-ADD .
+    protecting BOOLEAN .
+    op _<_ : Nat Nat -> Boolean .
+
+    vars M N : Nat .
+
+    eq s(M) < 0 = false .
+    eq 0 < s(M) = true .
+    eq s(M) < s(N) = M < N .
+endfm
+
+fmod DIFF is
+    protecting NAT-ADD .
+    protecting NAT< .
+    op diff : Nat Nat -> Nat .
+    vars M N : Nat .
+
+    ceq diff(M, N) = 0 if M = N .
+    ceq diff(M, N) = s(0) + diff(s(M), N) if M < N = true .
+    ceq diff(M, N) = s(0) + diff(M, s(N) if M < N = false .
+endfm
+    

@@ -1,0 +1,13 @@
+fmod half is
+    protecting NAT-ADD .
+
+    op half : Nat -> Nat .
+
+    var M : Nat .
+
+    eq half(0) = 0 .
+    eq half(s(0)) = 0 .
+    eq half(s(s(M))) = s(half(M)) .
+endfm
+    
+    

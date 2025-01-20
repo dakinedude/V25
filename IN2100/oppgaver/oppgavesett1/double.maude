@@ -1,0 +1,19 @@
+fmod DOUBLE is
+    protecting NAT-ADD .
+
+    op double : Nat -> Nat .
+
+    var M : Nat .
+
+    eq double(0) = 0 .
+    eq double(s(M)) = s(s((double(M)))) .
+endfm
+
+fmod DOUBLE+ is
+    protecting NAT-ADD .
+    op dp : Nat -> Nat .
+    var M : Nat .
+    eq dp(0) = 0 .
+    eq dp(s(M)) = s(dp(M)) + s(0) .
+endfm
+    

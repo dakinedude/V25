@@ -1,0 +1,12 @@
+fmod NAT-ADD is
+    sort Nat .
+    op 0 : -> Nat [ctor] . *** constant
+    op s : Nat -> Nat [ctor] . *** function
+    op _+_ : Nat Nat -> Nat . *** Operator
+
+    vars M N : Nat .
+
+    *** Define the addition function recursively:
+    eq 0 + M = M .
+    eq s(M) + N = s(M + N) .
+endfm

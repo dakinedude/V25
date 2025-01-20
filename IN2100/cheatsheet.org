@@ -1,0 +1,11 @@
+* Basics
+ - fmod MODULENAME is
+      body (en MENGDE av deklarasjoner)
+   endfm
+ - kommentarer: *** eller ---
+ - in filename.maude
+ - [prec] er precedence
+ - importer fmod:
+   - fmod X is
+   - protecting Y .
+ - `set trace on .` viser beregningsstegene

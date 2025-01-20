@@ -1,0 +1,11 @@
+fmod MIN is
+    protecting NAT< .
+    protecting BOOLEAN .
+
+    op min : Nat Nat -> Nat .
+
+    vars M N : Nat .
+
+    ceq min(M, N) = M if M < N = true .
+    ceq min(M, N) = N if M < N = false .
+endfm

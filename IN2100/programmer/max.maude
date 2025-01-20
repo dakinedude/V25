@@ -1,0 +1,11 @@
+fmod MAX is
+    protecting NAT< .
+    protecting BOOLEAN .
+
+    op max : Nat Nat -> Nat .
+
+    vars M N : Nat .
+
+    ceq max(M, N) = N if M < N = true .
+    ceq max(M, N) = M if M < N = false .
+endfm
