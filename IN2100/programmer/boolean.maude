@@ -1,12 +1,12 @@
+set include BOOL off .
+
 fmod BOOLEAN is
     sort Boolean .
-    *** operation name : argument -> value [precedence]
     ops true false : -> Boolean [ctor] .
     op not_ : Boolean -> Boolean [prec 53] .
     op _and_ : Boolean Boolean -> Boolean [prec 55] .
     op _or_ : Boolean Boolean -> Boolean [prec 59] .
 
-    *** variable name : type
     var B : Boolean .
     eq not_(false) = true .
     eq not_(true) = false .

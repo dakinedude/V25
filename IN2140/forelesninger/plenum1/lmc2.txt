@@ -1,0 +1,16 @@
+laster  LDA l0
+        brz slutt
+        otc
+        lda laster
+        add en
+        sta laster
+        bra laster
+slutt   HLT
+en      dat 1
+l0      dat 72
+l1      dat 101
+l2      dat 105
+l3      dat 32
+l4      dat 105
+l5      dat 102
+l6      dat 106

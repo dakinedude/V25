@@ -1,11 +1,12 @@
 fmod NAT> is
-    protecting NAT-ADD .
+    protecting NAT .
     protecting BOOLEAN .
 
     op _>_ : Nat Nat -> Boolean .
 
     vars M N : Nat .
-    eq 0 > s(M) = false .
+    eq 0 > M = false .
+    ceq M > N = false if M = N .
     eq s(M) > 0 = true .
     eq s(M) > s(N) = M > N .
 endfm

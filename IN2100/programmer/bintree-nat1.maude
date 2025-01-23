@@ -1,0 +1,52 @@
+in nat1.maude
+in list-nat1.maude
+
+fmod BINTREE-NAT1 is
+    protecting LIST-NAT1 .
+
+    sort BinTree .
+
+    op empty : -> BinTree [ctor] .
+    op bintree : BinTree Nat BinTree -> BinTree [ctor] .
+
+    ops preorder inorder postorder : BinTree -> List .
+    ops size weight : BinTree -> Nat .
+    op isSearchTree : BinTree -> Boolean .
+    op reverse : BinTree -> BinTree .
+
+    vars BT BT' : BinTree .
+    vars N N' : Nat .
+
+    *** root first, then left then right subtree
+    eq preorder(empty) = nil .
+    eq preorder(bintree(BT, N, BT')) = insert(N, concat(preorder(BT), preorder(BT'))) .
+
+    *** left first, then root, then right
+    eq inorder(empty) = nil .
+    eq inorder(bintree(BT, N, BT')) = concat(inorder(BT), concat(nil N, inorder(BT'))) .
+
+    *** left first, then right, then root
+    eq postorder(empty) = nil .
+    eq postorder(bintree(BT, N, BT')) = concat(postorder(BT), concat(postorder(BT'), nil N)) .
+    *** i den andre concat() av in- og postorder, saa lager jeg en liste kun bestaaende av N (roten)
+
+    *** sum of all elements in the tree
+    eq weight(empty) = 0 .
+    eq weight(bintree(BT, N, BT')) = N + weight(BT) + weight(BT') .
+
+    eq reverse(empty) = empty .
+    eq reverse(bintree(BT, N, BT')) = bintree(reverse(BT'), N, reverse(BT)) .
+endfm 
+
+*** red preorder(bintree(empty, s(s(0)), bintree(empty, s(0), empty))) .
+*** red inorder(bintree(empty, s(s(0)), bintree(empty, s(0), empty))) .
+*** red inorder(bintree(bintree(bintree(empty, s(s(s(s(0)))), empty), s(s(0)), bintree(empty, s(s(s(s(s(0))))), empty)), s(0), bintree(empty, s(s(s(0))), bintree(empty, s(s(s(s(s(s(0)))))), empty)))) .   
+*** red postorder(bintree(bintree(bintree(empty, s(s(s(s(0)))), empty), s(s(0)), bintree(empty, s(s(s(s(s(0))))), empty)), s(0), bintree(empty, s(s(s(0))), bintree(empty, s(s(s(s(s(s(0)))))), empty)))) .   
+
+*** 3 21
+*** red weight(bintree(empty, s(s(0)), bintree(empty, s(0), empty))) .
+*** red weight(bintree(bintree(bintree(empty, s(s(s(s(0)))), empty), s(s(0)), bintree(empty, s(s(s(s(s(0))))), empty)), s(0), bintree(empty, s(s(s(0))), bintree(empty, s(s(s(s(s(s(0)))))), empty)))) .   
+
+*** red reverse(bintree(empty, s(s(0)), bintree(empty, s(0), empty))) .
+*** red reverse(bintree(bintree(bintree(empty, s(s(s(s(0)))), empty), s(s(0)), bintree(empty, s(s(s(s(s(0))))), empty)), s(0), bintree(empty, s(s(s(0))), bintree(empty, s(s(s(s(s(s(0)))))), empty)))) .
+red reverse(bintree(bintree(empty, s(0), empty), 0, bintree(empty, s(s(0)), empty))) .

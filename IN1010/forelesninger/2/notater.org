@@ -1,0 +1,3 @@
+* Forelesning 2
+** Modellering
+ - Abstrahere vekk unoedvendige detaljer

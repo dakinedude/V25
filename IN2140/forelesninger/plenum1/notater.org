@@ -1,0 +1,34 @@
+*** Creating a ramfs filesystem and copying into it
+ - `mount -o size=16GB -t ramfs none /path/to/folder/`
+ - copying to static memory (disk) is, naturally, MUCH slower than copying to ramfs filesystem (volatile memory)
+ - `dd` (data destroyer) -- fill with random data
+*** The mythical OS type -- Bare Metal OS
+ - No abstractions, etc.
+ - Efficient for prototyping
+ - Hornet drone ? 
+*** Drivers:
+ - Software thta controls the actual components (like wifi cards)
+*** C
+ - always use `man` til aa finne info om funksjoner etc.
+ - `ls -lh` (human readable format -h)
+ - `gcc -O3 (optimize)`
+ - `objdump -D a.out | less` (for aa se assembler)
+ - Every string in C has a zero at the end to tell this is the end
+**** Hello World
+ - `echo $?` to view return value (of latest command)
+ - `fprintf(stdout, "tekst");`
+   * Spesifiser output(fil)
+     + Could be stderr also: An unbuffered file descriptor
+     + Buffered (printf): Might not appeared unless Linux sees fit
+     + Pro tip: USE `stderr`
+   * Kan likesaagodt bruke `printf()`
+*** LMC
+ - Work with adresses, not just labels (POINTERS)
+   + Increment adresses
+   + 509, 510, 511, ... (DAT is label 5, the rest is adress)
+*** POINTERS
+ - Points to an adress in memory
+ - Can use arithmetic on them, just like in LMC
+ - There is no self-modifying code in C
+*** THE STACK
+ - 

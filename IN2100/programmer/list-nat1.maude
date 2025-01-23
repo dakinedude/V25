@@ -2,7 +2,7 @@ in nat.maude
 in boolean.maude
 in greater-than.maude
 
-fmod LIST-NAT is protecting NAT . protecting BOOLEAN . protecting NAT> .
+fmod LIST-NAT1 is protecting NAT . protecting BOOLEAN . protecting NAT> .
     sort List .
     op nil : -> List [ctor] .
     op __ : List Nat -> List [ctor] .
@@ -70,12 +70,10 @@ fmod LIST-NAT is protecting NAT . protecting BOOLEAN . protecting NAT> .
 
 endfm
 
-red max(nil 0 0 0 s(0) 0 0 s(0)) .
-red max(nil 0 0 0 s(0) 0 s(s(0)) 0 s(0)) .
-red sorted?(nil 0 s(0)) .
-red sorted?(nil s(0) s(s(0)) 0) .
-
-
+*** red max(nil 0 0 0 s(0) 0 0 s(0)) .
+*** red max(nil 0 0 0 s(0) 0 s(s(0)) 0 s(0)) .
+*** red sorted?(nil 0 s(0)) .
+*** red sorted?(nil s(0) s(s(0)) 0) .
 *** red remove(s(0), nil 0 0 0 s(0) s(s(0)) s(0)) .
 *** red 0 in nil .
 *** red 0 in nil 0 .

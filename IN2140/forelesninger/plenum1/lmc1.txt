@@ -1,0 +1,23 @@
+LDA l0
+OTC
+LDA l1
+OTC
+LDA l2
+OTC
+LDA l3
+OTC
+LDA l4
+OTC
+LDA l5
+OTC
+LDA l6
+OTC
+LDA l7
+OTC
+l0 dat 72
+l1 dat 101
+l2 dat 105
+l3 dat 32
+l4 dat 105
+l5 dat 102
+l6 dat 106
