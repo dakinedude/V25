@@ -1,0 +1,55 @@
+set include BOOL off .
+in nat-add.maude
+in boolean.maude
+in less-than.maude
+
+fmod NAT1 is
+    protecting NAT< .
+    protecting BOOLEAN .
+
+    op half : Nat -> Nat .
+    ops _monus_ diff min : Nat Nat -> Nat .
+    ops odd even : Nat -> Boolean .
+    ops _<=_ _>_ _>=_ _==_ : Nat Nat -> Boolean .
+
+    ceq M <= N = true if M = N .
+    ceq M <= N = true if M < N = true .
+    ceq M <= N = false if M < N = false .
+
+    ceq M > N = true if M <= N = false .
+    ceq M > N = false if M <= N = true .
+
+    ceq M >= N = true if M = N .
+    ceq M >= N = true if M > N = true .
+    ceq M >= N = false if M < N = true .
+
+    ceq M == N = true if M = N .
+    ceq M == N = false if M > N = true .
+    ceq M == N = false if M < N = true .
+
+    vars M N : Nat .
+
+    eq half(0) = 0 .
+    eq half(s(0)) = 0 .
+    eq half(s(s(N))) = s(0) + half(N) .
+
+    eq N monus 0 = N .
+    eq 0 monus s(N) = 0 .
+    eq s(N) monus s(M) = N monus M .
+
+    ceq min(N, M) = N if N < M = true .
+    ceq min(N, M) = M if N < M = false .
+
+    eq diff(N, N) = 0 .
+    ceq diff(M, N) = s(0) + diff(s(M), N) if M < N = true .
+    ceq diff(M, N) = s(0) + diff(M, s(N)) if M < N = false .
+
+    eq odd(0) = false .
+    eq odd(s(0)) = true .
+    eq odd(s(s(N))) = odd(N) .
+
+    eq even(0) = true .
+    eq even(s(0)) = false .
+    eq even(s(s(N))) = even(N) .
+
+endfm

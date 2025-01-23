@@ -1,0 +1,7 @@
+fmod NAT-MULT is
+    protecting NAT-ADD .
+    op _*_ : Nat Nat -> Nat .
+    vars M N : Nat .
+    eq 0 * N = 0 .
+    eq s(M) * N = N + (M * N) .
+endfm

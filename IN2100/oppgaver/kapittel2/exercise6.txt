@@ -1,0 +1,28 @@
+fmod NAT< is
+    protecting NAT-ADD .
+    protecting BOOLEAN .
+
+    op _<_ : Nat Nat -> Boolean .
+
+    vars M N : Nat .
+    eq 0 < s(M) = true .
+    eq M < 0 = false .
+    eq s(M) < s(N) = M < N .
+endfm
+
+
+If NAT< is extended with the equation
+
+eq f(s(M), N) = f(M, M + N) + f(N, M) .
+
+Say that M = s(0) and N = s(0)
+
+1. f(s(s(0)), s(0)) = f(s(0), s(s(0))) + f(s(0),s(0))
+2. f(s(0), s(s(0))) + f(s(0), s(0)) = f(0, s(s(0))) + f(s(s(0)), 0)
+
+As we observe, it will jump back and forth in an infinite loop, never
+to terminate.
+
+
+
+

@@ -1,0 +1,20 @@
+fmod NAT-ADD is
+    sort Nat .
+    op 0 : -> Nat [ctor] . *** 0 er et element i vaar nye type Nat
+    op s : Nat -> Nat [ctor] . *** [ctor] == hvilke verdier jobber vi med?
+    op _+_ : Nat Nat -> Nat .
+    op _*_ : Nat Nat -> Nat .
+
+    vars M N : Nat .
+
+    eq 0 + M = M .
+    eq s(M) + N = s(M + N) .
+
+    eq M * 0 = 0 .
+    eq N * s(M) = N + (N * M) .
+endfm
+
+red s(0) * 0 .
+red 0 * s(0) .
+red s(s(s(0))) * s(s(0)) .
+red s(s(0)) * s(s(s(0))) .

@@ -1,0 +1,12 @@
+parantheses are not need when using nil and __,
+because lists only can be parsed in one way,
+namely beginning with a nil, followed by an arbitrary
+number of Nat's. If the last element of a list is followed
+by, say, an operation (function) not described as a [ctor],
+the parser would automatically interpret this as the "end" of
+that list, due to the list only being defined for nil and Nat.
+
+nil is a list, and nil Nat is a list.
+
+However, nil Nat nil is not a list, due to the list
+not being defined for elements that are also lists. 

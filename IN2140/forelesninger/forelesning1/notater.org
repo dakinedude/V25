@@ -1,0 +1,74 @@
+* IN2140, forelesning 1
+** Eksekveringsomgivelser
+ - Applikasjon  ^
+ - Filesystem   |
+ - Disk         |
+
+ - Fra disk til applikasjon:
+   1. PCI til RAM
+   2. RAM til CPU
+   3. CPU til RAM (applikasjonsdelen)
+ - IA32 har 64GB-adresserom, hvor hver prosess allokeres 4GB
+
+** OS
+ - Sett ovenfra:
+   + OS er en slags virtuell, extended maskin (som skjuler detaljer)
+ - Sett underifra:
+   + OS er en slags ressurshaandterer
+     * Hvert program faar sin tid/ sitt minne
+
+ - Forskjellige typer:
+   + Single-user, single task
+     * Ikke veldig vanlig lenger ... En slags maskin som kjoerer en og en app
+   + Single-user, multi-tasking
+     * Typisk mobiltelefoner, spesielt konfigurerte PCer, etc.
+ - Multi-user, multi-tasking
+
+ - Distribuerte, real-time, embedded ...
+
+ - Bestaar av:
+   + Filsystem
+   + User Interface
+   + Device Management
+   + Communication
+   + Management of processes
+   + Memory Management
+** Device management
+** 
+** TODO 
+ - Forskjelige enheter med forskj. hastigheter og haandteringsmetoder
+ - Device <-> Controller <-> Driver <-> OS
+ - To typer:
+   + Port I/O (sender spesialinstruksjoner)
+   + Memory-mapped I/O (registre mapped into regular memory)
+** System calls
+ - The interface between OS and user
+ - Seems like a normal function call, but goes (from user space) through system call interface (in kernel space)
+ - Typically Process controll, file management, device management, info. management, comm. management ...
+ - Interface typically accessed through a collection library procedures ...
+   + Which in turn calls system call handler
+     * Which in turn mapps the register to the system call
+** Interrupts/ Exceptions
+ - Polling (are you done yet?) is ineffective and messy
+
+   ### Interrupts ###
+   - An asynchronous electronic signal that forces the transfer of controll to an interrupt handling routine.
+   - Typically happen after finished disk operations, incoming network packets, expired timers, etc.
+   - Calls
+   - Can be disabled or masked out
+
+   ^  treated similarly, with the same IDT (interruption descriptor table) table  V 
+
+   ### Exceptions ###
+   - Caused by synchronous events when the CPU detects a predefined condition (like errors and such)
+
+   - Interrupts occur like this
+     1. Process running while interrupt occurs
+     2. capture state
+     3. Execute interrupt handler
+     4. restore interrupted process
+     5. continue execution
+**
+** 
+** 
+** 

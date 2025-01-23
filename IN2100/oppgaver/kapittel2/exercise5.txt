@@ -1,0 +1,43 @@
+fmod NAT-ADD is
+    sort Nat .
+    op 0 : -> Nat [ctor] .
+    op s : Nat -> Nat [ctor] .
+    op _+_ : Nat Nat -> Nat .
+
+    vars M N : Nat .
+
+    eq 0 + M = M .
+    eq s(M) + N = s(M + N) .
+endfm
+
+There are no infitie computations in NAT-ADD, because :
+
+      + each term always ends up with a term to which
+      no equation applies
+      + in the first recursive call, the 0 value decreases
+      + in the second recursive call, the N value decreases
+      (meaning that the number of function symbol occ. decrease)
+
+      Thus, the NAT-ADD function is terminating.
+
+fmod NAT< is
+    protecting NAT-ADD .
+    protecting BOOLEAN .
+
+    op _<_ : Nat Nat -> Boolean .
+
+    vars M N : Nat .
+    eq 0 < s(M) = true .
+    eq M < 0 = false .
+    eq s(M) < s(N) = M < N .
+endfm
+
+
+There are no infitie computations in NAT<, because :
+
+      + each term always ends up with a term to which
+      no equation further applies
+      + in the recursive call, the number of occ. of s()
+      decreases
+
+Thus, NAT< terminates -- it is terminating.

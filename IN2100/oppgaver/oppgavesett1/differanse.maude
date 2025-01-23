@@ -38,6 +38,6 @@ fmod DIFF is
 
     ceq diff(M, N) = 0 if M = N .
     ceq diff(M, N) = s(0) + diff(s(M), N) if M < N = true .
-    ceq diff(M, N) = s(0) + diff(M, s(N) if M < N = false .
+    ceq diff(M, N) = s(0) + diff(M, s(N)) if M < N = false .
 endfm
     

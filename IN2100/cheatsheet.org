@@ -9,3 +9,5 @@
    - fmod X is
    - protecting Y .
  - `set trace on .` viser beregningsstegene
+ - set include BOOL off .
+ - NzNat er vanlig int

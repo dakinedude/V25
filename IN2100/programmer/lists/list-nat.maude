@@ -1,0 +1,99 @@
+in nat.maude
+in boolean.maude
+in greater-than.maude
+
+fmod LIST-NAT is protecting NAT . protecting BOOLEAN . protecting NAT> .
+    sort List .
+    op nil : -> List [ctor] .
+    op __ : List Nat -> List [ctor] .
+
+    op length : List -> Nat .
+    op concat : List List -> List .
+    op insert : Nat List -> List .
+    ops first last : List -> Nat .
+    op empty? : List -> Boolean .
+    op rmfirst : List -> List .
+    op reverse : List -> List .
+    op _in_ : Nat List -> Boolean .
+    op remove : Nat List -> List . *** Removes element(s)
+    op max : List -> Nat .
+    op sorted? : List -> Boolean .
+
+    vars N N' : Nat .
+    vars L L' : List .
+
+    eq length(nil) = 0 .
+    eq length(L N) = s(length(L)) .
+
+    eq concat(L, nil) = L .
+    eq concat(L, L' N) = concat(L, L') N .
+
+    eq insert(N, nil) = nil N .
+    eq insert(N, nil N') = nil N N' .
+    eq insert(N, L N') = insert(N, L) N' .
+
+    eq first(nil) = 0 . *** Default error value?
+    eq first(nil N) = N .
+    eq first(L N' N) = first(L N') .
+
+    eq last(nil) = 0 .
+    eq last(L N) = N .
+
+    eq empty?(nil) = true .
+    eq empty?(nil N) = false .
+
+    eq rmfirst(nil) = nil .
+    eq rmfirst(nil N) = nil .
+    eq rmfirst(L N N') = rmfirst(L N) N' .
+
+    eq reverse(nil) = nil .
+    eq reverse(nil N) = nil N .
+    eq reverse(L N N') = insert(N', reverse(L N)) .
+
+    eq N in nil = false .
+    ceq N in L N' = true if N = N' .
+    eq N in L N' = N in L .
+
+    eq remove(N, nil) = nil .
+    ceq remove(N, L N') = remove(N, L) if N = N' .
+    eq remove(N, L N') = remove(N, L) N' .
+
+    eq max(nil) = 0 . *** error ?
+    eq max (nil N) = N .
+    ceq max(L N N') = max(L N') if N' > N = true .
+    ceq max(L N N') = max(L N) if N' > N = false .
+
+    eq sorted?(nil) = true .
+    eq sorted?(nil N) = true .
+    ceq sorted?(L N N') = true and sorted?(L N) if N' > N = true .
+    ceq sorted?(L N N') = false if N' > N = false . 
+
+endfm
+
+red max(nil 0 0 0 s(0) 0 0 s(0)) .
+red max(nil 0 0 0 s(0) 0 s(s(0)) 0 s(0)) .
+red sorted?(nil 0 s(0)) .
+red sorted?(nil s(0) s(s(0)) 0) .
+
+
+*** red remove(s(0), nil 0 0 0 s(0) s(s(0)) s(0)) .
+*** red 0 in nil .
+*** red 0 in nil 0 .
+*** red 0 in nil s(0) s(s(0)).
+*** red 0 in nil s(0) 0 s(s(0)).
+*** red reverse(nil) .
+*** red reverse(nil 0) .
+*** red reverse(nil 0 s(0) s(s(0)) s(s(s(0)))) .
+
+*** red rmfirst(nil) .
+*** red rmfirst(nil 0) .
+*** red rmfirst(nil s(0) 0 0 s(s(0))) .
+*** red first(nil s(0) 0 0 0) .
+*** red first(nil s(0) 0) .
+
+*** red last(nil s(0) 0 0 0) .
+*** red last(nil s(0) 0 0 s(s(0))) .
+
+*** red empty?(nil) .
+*** red empty?(nil 0) .
+    

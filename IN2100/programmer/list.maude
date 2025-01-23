@@ -1,0 +1,11 @@
+fmod LIST is
+    protecting NAT-ADD .
+    sort List .
+
+    op nil : -> List [ctor] .
+    *** op app : List Nat -> List [ctor] .
+    *** op _++_ : List Nat -> List [ctor] .
+    op __ : List Nat -> (List) [ctor] .
+
+endfm
+    

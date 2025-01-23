@@ -1,0 +1,12 @@
+fmod MINUS-TWO is
+    protecting NAT-ADD .
+
+    op minus-two : Nat -> Nat .
+
+    var N : Nat .
+
+    eq minus-two(0) = 0 .
+    eq minus-two(s(0)) = 0 .
+    eq minus-two(s(s(N))) = N .
+endfm
+    
