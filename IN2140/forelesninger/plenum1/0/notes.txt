@@ -1,0 +1,66 @@
+### Standard hello world
+        LDA l0
+        OTC
+        LDA l1
+        OTC
+        LDA l2
+        OTC
+        LDA l3
+        OTC
+        LDA l4
+        OTC
+        LDA l5
+        OTC
+        LDA l6
+        OTC
+        HLT
+l0      DAT 72
+l1      DAT 101
+l2      DAT 105
+l3      DAT 32
+l4      DAT 105
+l5      DAT 102
+l6      DAT 105
+
+### Self-modifying hello world
+laster  LDA l0
+        BRZ slutt
+        OTC
+        LDA laster
+        ADD en
+        STA laster
+        BRA laster
+slutt   HLT
+en      DAT 1
+l0      DAT 72
+l1      DAT 101
+l2      DAT 105
+l3      DAT 32
+l4      DAT 105
+l5      DAT 102
+l6      DAT 105
+
+
+### For longer string
+        DAT 44
+        DAT 32
+        DAT 100
+        DAT 101
+        DAT 116
+        DAT 116
+        DAT 101
+        DAT 32
+        DAT 118
+        DAT 97
+        DAT 114
+        DAT 32
+        DAT 115
+        DAT 109
+        DAT 97
+        DAT 114
+        DAT 116
+        DAT 32
+        DAT 61
+        DAT 68
+
+mount -o size=16G -t ramfs none fast_ram

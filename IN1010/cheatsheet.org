@@ -44,7 +44,9 @@ Dict
 - .put(key, value)
 - .get(key), size(), clear()
 
-- 
+*** Exceptions
+- System.exit(1); paa main, istedenfor `return 1`;
+
 * TEORI *
 *** static ***
 
@@ -56,6 +58,7 @@ Dict
 - main er alltid static, fordi vi ikke vil opprette et objekt for aa kjoere klassen
 - Skrives ofte i ALL CAPS
 - Kan brukes inne i metoden, men ikke sammen med `.this`
+- Static metoder kan kun kalle andre static metoder
 
 *** Mutability ***
 - Alle legacy-klasser er immutable

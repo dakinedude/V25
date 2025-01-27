@@ -1,0 +1,38 @@
+fmod BITS is
+    sorts Bit Bits .
+
+    ops 0 1 : -> Bit [ctor] .
+    op nil : -> Bits [ctor] .
+    op __ : Bits Bit -> Bits [ctor] .
+    op __ : Bit Bits -> Bits [ctor] .
+
+    op neg : Bits -> Bits .
+    op _+_ : Bits Bits -> Bits .
+    op _*_ : Bit Bit -> Bit .
+    op insert : Bit Bits -> Bits .
+
+    vars b b' : Bit .
+    vars B B' : Bits .
+
+    eq neg(nil) = nil .
+    eq neg(B 1) = neg(B) 0 .
+    eq neg(B 0) = neg(B) 1 .
+
+    eq insert(b, nil) = nil b .
+    eq insert(b, B b') = insert(b, B) b' .
+
+    eq B + nil = B .
+    eq nil + B = B .
+
+    eq B 1 + B' 1 = insert(1, B + B') 0 .
+    eq B b + B' 0 = (B + B') b * 0 .
+    eq B 0 + B' b' = (B + B') 0 * b' .
+
+    eq 0 * 1 = 1 .
+    eq 1 * 0 = 1 .
+    eq 0 * 0 = 0 .
+
+endfm
+
+
+    

@@ -1,0 +1,44 @@
+1.
+
+l0 = [1, 0]
+l1 = [0, 2]
+l2 = [0, 1, 3]
+l3 = [0, 1, 2, 4]
+l4 = [0, 1, 2, 3]
+l5 = [0, 1, 3, 4, 5]
+l6 = [0, 1, 2, 4, 5]
+l7 = [0, 1, 2, 3, 5]
+l8 = [0, 1, 2, 3, 4, 5]
+...
+
+2.
+
+List l0 has to "begin" somewhere, with some arbitrarily
+big number
+
+At one point, however, a list l_n will reach the smallest
+natural number
+
+Thus contradicting the notion of an infinite sequence
+
+
+3.
+
+op _greaterThan_ : List List -> Boolean .
+
+vars L L' : List .
+
+var N : Nat .
+
+ceq L greaterThan L'  =
+    true if first(L) > first(L') = true .
+
+ceq L greaterThan L'  =
+    false if first(L) > first(L') = false .
+
+eq L greaterThan L' N' = rest(L) greaterThan rest(L') .
+
+eq nil N greaterThan nil = true .
+
+eq nil greaterTha nil N = false .
+

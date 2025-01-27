@@ -68,8 +68,20 @@ fmod LIST-NAT1 is protecting NAT . protecting BOOLEAN . protecting NAT> .
     ceq sorted?(L N N') = true and sorted?(L N) if N' > N = true .
     ceq sorted?(L N N') = false if N' > N = false . 
 
+
+    op _greaterThan_ : List List -> Boolean .
+
+    ceq L greaterThan L' = true if first(L) > first(L') = true .
+    ceq L greaterThan L' = false if first(L) > first(L') = false .
+    eq L greaterThan L' = rmfirst(L) greaterThan rmfirst(L') .
+    eq nil N greaterThan nil = true .
+    eq nil greaterThan nil N = false .
+
+
 endfm
 
+red nil s(0) s(s(0)) s(s(s(0))) greaterThan nil 0 s(0) s(s(0)) s(s(s(0))) .
+red  nil 0 s(0) s(s(0)) s(s(s(0))) greaterThan nil s(0) s(s(0)) s(s(s(0))) .
 *** red max(nil 0 0 0 s(0) 0 0 s(0)) .
 *** red max(nil 0 0 0 s(0) 0 s(s(0)) 0 s(0)) .
 *** red sorted?(nil 0 s(0)) .
