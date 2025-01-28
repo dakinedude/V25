@@ -9,7 +9,7 @@ fmod SQUARE is
     
     eq sqr(0) = 0 .
 
-    eq sqr(s(N)) = sqr(N) + s(N) + N .
+    eq sqr(s(N)) = (sqr(N) + s(N)) + N .
 endfm
 
 *** it works, because last N = s(N) - 1

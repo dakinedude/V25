@@ -1,0 +1,268 @@
+*** Booting
+
+OS er bare en programvare, som kjoerer paa hardware.
+
+Det foerste som starter, er BIOS/UEFI, som inneholder en adresse paa disken (MBR), og som laster OS inn i minnet.
+
+*** OS Organization
+
+Monolithic kernel
+ - Alt samles i en kjerne/et objekt
+ - Alt kjoere i samme omgivelse
+ - Mer effektiv, siden du ikke krever aa krysse beskyttelsesomraader
+ - En liten feil, saa kraesjer potensielt hele systemet
+
+Micro kernel
+ - En liten kjerne i bunnen (som kjoerer i kernen mode)
+ - Alle andre moduler kjoerer som egne prosesser (som f.eks. filsystemet)
+ - Hvis en modul kraesjer, saa kjoerer resten
+ - Ineffektivt, fordi du maa krysse grenser (beskyttelsesomraader) hele tiden
+ - Windows og Mac tenderer litt mer mot dette, enn Linux.
+
+*** Processes
+
+A program is a set of instructions - a process is its execution.
+
+En prosess har en PCB (process control block): Registre, pekere, minneinformasjon, etc. Mao. all informasjon om prosessen.
+
+fork() gjoer et kall til kjernen, for aa opprette en ny prosess.
+
+Den lager et duplikat av prosessen den ble kalt fra.
+
+Tilstand, aapne filer, minne, etc., kopieres.
+
+Mao. har de samme tilstand naar de starter.
+
+fork() har to retur-"betydninger".
+
+Hvis pid_t = 0, saa er du i barneprosessen
+
+hvis pid_t returnerer et (stoerre) tall, altsaa barnets PID (utenom -1), saa er du foreldreprosessen. 
+
+Men barnet og foreldre kan gjoere forskjellige ting, selv om foerstenevnte er en eksakt kopi.
+
+Dette er fordi vi har en logisk-if-blokk som ser paa returnverdien til fork(), som enten er 0 eller pid_t til barnet.
+
+Saa en av dem kan f.eks. bruke int execve(), som bytter ut innholdet i en prosess, til noe helt annet.
+
+execve() returnerer -1 hvis noe gikk galt, eller returnerer den egt. ingenting (fordi det ikke er noe aa returnere til,
+fordi den jo har overskrevet den opprinnelige)
+
+*** Process waiting
+
+pit_t wait(int *status) faar en prosess til aa vente paa en annen en
+
+returnerer -1 hvis barnet ikke exits (at det f.eks. ikke finnes noen prosess)
+PID av terminert prosess, og putter status til prosessen i &status (feks. feilmeldinger, etc)
+
+man kan bruke foreldreprosessen til aa vente til at barneprosessen terminerer
+
+void exit(int status) terminerer prosessen trygt med den gitte statuskoden
+
+og typisk sett indikerer 0 at alt gikk bra
+
+*** Process states
+
+Vi har feks ikke en CPU til hver enkelt prosess -- saa hver prosess har en gjeldende tilstand
+
+1. Running: Prosessen kjoerer aktivt og bruker CPU
+2. Ready: Alle prosesser som naar som helst kan begynne aa kjoere i CPU (venter ikke paa noe ekstert)
+3. blocked: alle prosesser som venter paa noe eksternt (tastetrykk, nettverkspakker, etc) -- de er IKKE klare til aa kjoere!
+
+Overganger:
+
+1. Kjoerende til blokkert (venter paa input)
+2. Running til ready (tiden er brukt opp, men den er KLAR til aa kjoere videre)
+3. Ready til running
+4. Bloced til ready (external event finished, prosessen er klar til aa kjoere videre)
+5. (fra ny prosess til ready, klar til aa kjoere fra ingenting)
+6. (running til terminering)
+
+
+*** Context switches
+
+Tar vare paa tilstander mellom overgangene fra process states
+
+Idet man gaar fra running til ready, saa har man en context switch, slik at man beholder contexten til den som gaar til ready, og henter
+inn den fra ready til running
+
+Man tar vare paa tilstanden prosessen trenger, for aa kunne starte paa samme sted naar den begynner aa kjoere igjen
+
+Dette har en kostnad (overhead) -- men det kan optimaliseres mtp. hvor ofte man oensker aa ha disse switchene
+
+?Hvorfor skjer dette?
+
+1. Systemet bytter fra en prosess til en annen (fordi tiden er ute)
+2. Noe eksternt skjer
+3. Du gjoer et systemkall fra user til kernel, og det bryter beskyttelsen
+
+
+*** Processes vs. threads
+
+Prosessen inneholder mange forskjellige ting
+
+Noen ganger samarbeider to prosesser -> Dette foerer til context switching
+
+En traad er derimot en slags lett prosess, som kjoerer med globale data, felles for alle traadene
+
+Og selv om traadene har forskjellige stacks etc., saa trenger man ikke aa bryte beskyttelsesomraader;
+man kan skrive til samme minneomraader, uten aa bli switchet -> Billigere
+
+*** CPU scheduling
+
+A task is a schedable entity that can run (i vaart tilfelle en prosess)
+
+En scheduler bestemme hvilken prosess som til enhver tid for tilgang til CPU-en
+
+Denne bruker en algoritme
+
+Tilslutt flytter en dispatcher den gjeldende prosesses til CPU
+
+RT vs NRT
+
+Kan tilgang til CPU-en optimaliseres?
+
+CPU-bound vs I/O-bound prosesser
+
+Store bursts for CPU-bound
+
+Korte burts for I/O-bound, som alternerer med perioder hvor prosesser venter paa IO-input
+
+En slags mix er gunstigere
+
+*** FIFO og shortest job first (SJF)
+
+FIFO:
+
+Tre jobber: A, B, C
+
+___A___ _B_ __C__
+   8     2    4
+   
+FIFO: A foerst saa B saa C
+
+    trenger venter ferdig
+A      8       0     8
+B      2       8    10
+C      4      10    14
+
+SJF:
+Sorterer etter den med minst tid trengs, foerst
+
+_B_ __C__ ___A___
+
+    trenger venter ferdig
+B      2       0     2
+C      4       2     6
+A      8       6     14
+
+Kanskje bedre? (mindre venting)
+
+FIFO:
+- Enkel
+- Kan maatte vente lenge
+
+Alternativ: Round Robin
+
+Vi arrangerer i FIFO-koe, men alternerer mellom prossesene;
+hver enkelt prosess faar en enkelt tidsplott
+
+*** RR vs. FIFO
+
+Anta at vi har 10 jobber, hver tar 100s
+
+Anta at vi ikke har noe overhead ved context switching
+
+FIFO kjoerer de ti jobbene i sekvens, og vi faar svaert lang ventetid paa noen av prosessene
+
+RR - tidsslot paa 1s om gangen
+
+Etter ti sekunder, har alle de ti jobbene faatt startet
+
+Dette gir oss korte ventetider, men det tar betraktelig lengre tid for alle aa bli ferdig:
+ingen er ferdig foer den siste tidsepoken
+
+Konkusjon:
+
+FIFO er bedre for lange, CPU-tunge jobber (pga. overhead i context switching)
+med RR er bedre for interaktivitet
+
+Men her brukte vi 1s. Er det den beste slice?
+
+*** Eks
+
+Tre prosesser:
+A, B 100 % CPU
+C IO-boud, looper foralltid, 10ms disk bruk
+
+CPU-en blir kjoert 100% uansett
+
+100s slice:
+
+A:100 + B:100 + C:1 -> 201 ms CPU s. 10ms disk
+
+dvs. at disken faar 5% utnyttelse
+
+1ms slice:
+
+5x(A:1 + B:1) + C:1 -> 11ms CPU vs 10 ms disk
+
+disk: 91% utnyttelse
+
+IO => kortere
+CPI => lengre
+
+*** Tradeoffs & Goals
+
+Rettferdighet, ingen idle waiting (starvation), kort responstid (time_response_given - time_request_submitted)
+Maksimer gjennomstroemning av jobber (utfoer flest mulig jobber)
+Maksimer CPU, Disk, etc (ressurser)
+Minimer overehead
+
+Hvem er "du"?
+
+Er du kjernen, saa er det viktigste aa utnytte alt sammen (nettverkskort, CPU, disk, minnet, etc)
+
+Er du brukeren, saa oensker du interaktivitet (responstid)
+
+Hva gjoer systemet?
+
+Batch-system: optimalisering med minst mulig context switching overhead, hoey CPU-utilisasjon
+
+PC: responstid, interaktivitet
+
+Kjernekraftverk, fly, bil (sanntidssystemet (real-time)): moeter deadlines, ikke mist data
+
+*** Scheduling classifications
+
+To typer algoritmer: Dynamiske og statiske
+
+Statiske: legge opp en plan basert paa hvordan man trodde jobbene ville utfoeres
+
+Dynamiske: Prosessene endrer rekkefoelge konstant, avgjoerelser tas underveis
+
+Annen klassifisering:
+
+Non-preemptive: Prosesser kan kjoere "saa lenge de vil", uavbrutt
+Preemptive: Prosesser kan avbrytes, med hensikt om aa kunne starte den igjen
+
+Dynamiske, preemptive systemer er vanligst idag
+
+Real Time > Best effort
+RT faar kjoere foerst, og BE faar kjoere naar koen er tom: Men dersom det dukker opp en ny RT prosess, saa legges BE bak denne
+
+Dette kan skje pga. tiden er ferdig, nye prosesser kommer inn, ny IO input,
+
+Vi maa mao. kunne tillate at systemet avbryter en prosess
+
+To maater aa gjoere preemption paa:
+
+Preemption points: beste punkter hvor det kan skje preemption, dette gir forutsigbar overhead
+Ellers paagaende preemption (aktivt)
+
+Prioriteter med preemption gjoer at en BE prosess deles opp og avbrytes av en RT
+
+Prioriteter uten gjoer at BE kjoerer foerst, saa kommer RRT rett etter denne
+
+Mens uten prioriteter non-preemptive plasserer RT heeelt bak i koen
+
