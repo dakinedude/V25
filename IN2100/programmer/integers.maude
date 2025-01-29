@@ -1,0 +1,44 @@
+fmod INT is
+    sorts Zero NzNat NzNeg Nat Neg Int .
+    subsorts Zero < Nat Neg < Int .
+    subsort NzNat < Nat .
+    subsort NzNeg < Neg .
+
+    sort NzInt .
+    subsorts NzNat NzNeg < NzInt < Int .
+
+    op 0 : -> Zero [ctor] .
+    op s : Nat -> NzNat [ctor] .
+    op p : Neg -> NzNeg [ctor] . --- Predecessor func.
+
+    op -_ : NzNat -> NzNeg [ctor prec 15] .
+
+    ops _+_ _-_ : Int Int -> Int [prec 33] .
+
+    vars M N : Nat .
+    var I : Int .
+    var NEG : Neg .
+    var NZNEG : NzNeg .
+    var NZN NZN' : NzNat .
+
+    eq 0 + I = I .
+    eq s(M) + N = s(M + N) .
+
+    eq I - 0 = I .
+    eq 0 - NZN = - NZN .
+    eq s(M) - s(N) = M - N .
+
+    eq - NZN + - NZN' = - (NZN + NZN') .
+    eq M + - NZN = M - NZN .
+    eq - NZN + N = N - NZN .
+
+    eq 0 - (- NZN) = NZN .
+    eq M - (- NZN) = M + NZN .
+    eq (- NZN) - (- NZN') = NZN' - NZN .
+    eq (- NZN) - N = - (NZN + N) .
+    
+endfm
+    
+        
+
+    

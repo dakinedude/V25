@@ -1,0 +1,21 @@
+subsorts:
+
+subsorts Nat < Int .
+
+sorts List NeList . subsort NeList < List .
+
+op nil : -> List [ctor] .
+op __ : List Nat -> NeList [ctor] .
+
+cmb t : s if condition .
+
+
+sort OrderedList .
+subsort OrderedList < List .
+
+var L : List .
+
+cmb L : OrdeleredList if isSorted(L) = true .
+
+if , then, else, fi (alltid fi paa slutten)
+

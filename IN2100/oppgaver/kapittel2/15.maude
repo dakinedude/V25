@@ -1,0 +1,12 @@
+fmod BIG is 
+    sorts s1 s2 s3 s4 .
+    subsorts s2 s3 < s4 .
+    subsort s2 < s1 .
+
+    op a : -> s3 .
+    op b : -> s2 .
+
+    op g : s3 s2 -> s1 .
+    op g : s2 s1 -> s2 .
+    op g : s1 s1 -> s4 .
+endfm

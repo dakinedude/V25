@@ -1,0 +1,45 @@
+sorts s1 s2 s3 s4 .
+subsorts s2 s3 < s4 .
+subsort s2 < s1 .
+
+op a : -> s3 .
+op b : -> s2 .
+
+op g : s3 s2 -> s1 .
+op g : s2 s1 -> s2 .
+op g : s1 s1 -> s4 .
+
+1. its preregular. every overlapping declaration yields comparable
+results. consider g(b, b):
+g(s2, s1) ~> s2, or
+g(s1, s1) ~> s4
+
+but since s2 < s4, it's acceptable
+for g(s3, s2), we only have g(a, b)
+
+2.
+s4:
+a, b, via s2 < s4
+g(g(a, b), g(a, b)) via g(s1, s1) = s4
+g(b, g(a,b)) via s2 < s1 and g(s1, s1) = s4
+
+s1:
+g(a, b) -> s1         
+g(a, g(b, b)) -> s1 via s2 < s1
+g(a, g(b, g(a, b))) -> s1
+g(a, g(b, g(a, g(b, b)))) -> s1
+  s3     s2    s1      s2
+
+3.
+a: s3
+g(b, g(b, g(a, b))) : s4 ~> s2 / s2
+
+4.
+
+op g : s4 s4 -> s4
+
+this would clash with
+
+op g : s3 s2 -> s1
+
+since both s3 s2 < s4, but s1 !< s4

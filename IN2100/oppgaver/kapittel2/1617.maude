@@ -1,0 +1,90 @@
+fmod INT is
+    sorts Zero NzNat NzNeg Nat Neg Int NzInt .
+    subsorts Zero < Nat Neg < Int .
+    subsort NzNat < Nat .
+    subsort NzNeg < Neg .
+    subsorts NzNat NzNeg < NzInt < Int .
+
+    op 0 : -> Zero [ctor] .
+    op s : Nat -> NzNat [ctor] .
+    op p : Neg -> NzNeg [ctor] . --- Predecessor func.
+    
+    op -_ : NzNat -> NzNeg [ctor prec 15] .
+    
+    ops _+_ _-_ : Int Int -> Int [prec 33] .
+
+    vars M N : Nat .
+    vars I I' : Int .
+    var NEG : Neg .
+    vars NZNEG NZNEG' : NzNeg .
+    vars NZN NZN' : NzNat .
+
+    eq 0 + I = I .
+    eq s(M) + N = s(M + N) .
+
+    eq I - 0 = I .
+    eq 0 - NZN = - NZN .
+    eq s(M) - s(N) = M - N .
+
+    eq - NZN + - NZN' = - (NZN + NZN') .
+    eq M + - NZN = M - NZN .
+    eq - NZN + N = N - NZN .
+
+    eq 0 - (- NZN) = NZN .
+    eq M - (- NZN) = M + NZN .
+    eq (- NZN) - (- NZN') = NZN' - NZN .
+    eq (- NZN) - N = - (NZN + N) .
+
+    --- Lag mindre enn, derreter / og *
+
+    op _<_ : Int Int -> Bool .
+    eq 0 < NZN = true .
+    eq 0 < NZNEG = false .
+    eq M < 0 = false .
+    eq s(M) < s(N) = M < N .
+    eq NEG < NZN = true .
+    eq NZN < NEG = false .
+    eq NZNEG < N = true .
+    eq NZNEG < NZNEG' = 0 < NZNEG' - NZNEG .
+
+    op _/_ : Int NzInt -> Int .
+    eq 0 / I = 0 .
+    eq I / s(0) = 0 .
+    eq I / I = s(0) .
+    ceq NZN / NZN' = 0 if NZN < NZN' = true .
+    ceq s(N) / s(M) = (s(N) / (s(M) + s(M))) + s(0) if s(N) < s(M) = false .
+    eq - N / - M = N / M .
+    eq N / - M = - s(0) * (N / M) .
+    eq - N / M = - s(0) * (N / M) .
+
+    op _*_ : Int Int -> Int [prec 30].
+    eq 0 * I = 0 .
+    eq I * 0 = 0 .
+    eq s(0) * I = I .
+    eq s(N) * M = (N * M) + M .
+    eq - N * M =  - (N * M) .
+    eq N * - M =  - (N * M) .
+    eq - N * - M = N * M .
+
+    op half : Int -> Int .
+    eq half(0) = 0 .
+    eq half(s(0)) = 0 .
+    eq half(s(s(N))) = s(0) + half(N) .
+    eq half(- M) = - half(M) .
+
+    
+endfm
+*** red - s(s(s(s(0)))) / - s(s(0)) .
+*** red - s(s(s(s(0)))) / s(s(0)) .
+*** red s(s(0)) * - s(s(s(s(0)))) .
+*** red - s(s(0)) * s(s(0)) .
+*** red  s(s(0)) * s(s(0)) .
+*** red  0 * s(s(0)) .
+*** red  s(s(0)) * 0 .
+*** red - s(s(0)) * - s(s(0)) .
+*** red s(s(s(s(0)))) /  s(s(0)) .
+red - s(0) / s(s(0)) .
+red - s(s(s(s(0)))) / s(s(0)) .
+red s(s(s(s(0)))) / - s(s(0)) .
+
+red - s(s(s(s(s(0))))) / s(s(0)) .

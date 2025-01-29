@@ -1,0 +1,35 @@
+*** in nat-add.maude
+
+fmod PART is
+    sorts NzNat Nat .
+    subsort NzNat < Nat .
+
+    op 0 : -> Nat [ctor] .
+    op s : Nat -> NzNat [ctor] .
+
+    op _/_ : Nat NzNat -> Nat .
+
+    sorts List NeList .
+    subsort NeList < List .
+
+    op nil : -> List [ctor] .
+    op __ : List Nat -> NeList [ctor] .
+
+    ops first last : NeList -> Nat .
+    op rest : NeList -> List .
+
+    var N : Nat .
+    var L : List .
+
+    var NEL : NeList .
+
+    eq first(nil N) = N .
+    eq first(NEL N) = first(NEL) .
+
+    eq last(nil N) = N .
+    eq last(L N) = N .
+
+    eq rest(nil N) = nil .
+    eq rest(NEL N) = rest(NEL) N .
+endfm
+    

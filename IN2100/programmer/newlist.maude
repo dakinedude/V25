@@ -1,0 +1,10 @@
+in nat-add.maude
+
+fmod NEW-LIST is
+    protecting NAT-ADD .
+    sorts NeList List .
+    subsort Nat < NeList < List .
+    op nil : -> List [ctor] .
+    *** op __ : List Nat -> NeList [ctor] .
+    op __ : NeList Nat -> NeList [ctor] .
+endfm
