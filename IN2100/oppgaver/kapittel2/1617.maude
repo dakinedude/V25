@@ -72,19 +72,19 @@ fmod INT is
     eq half(s(s(N))) = s(0) + half(N) .
     eq half(- M) = - half(M) .
 
-    
-endfm
-*** red - s(s(s(s(0)))) / - s(s(0)) .
-*** red - s(s(s(s(0)))) / s(s(0)) .
-*** red s(s(0)) * - s(s(s(s(0)))) .
-*** red - s(s(0)) * s(s(0)) .
-*** red  s(s(0)) * s(s(0)) .
-*** red  0 * s(s(0)) .
-*** red  s(s(0)) * 0 .
-*** red - s(s(0)) * - s(s(0)) .
-*** red s(s(s(s(0)))) /  s(s(0)) .
-red - s(0) / s(s(0)) .
-red - s(s(s(s(0)))) / s(s(0)) .
-red s(s(s(s(0)))) / - s(s(0)) .
+    ops _monus_ diff min : Int Int -> Int .
+    ops odd even : Int -> Bool .
+    eq I monus I' = if I - I' < 0 then 0 else I - I' fi .
+    eq diff(I, I') = if I - I' < 0 then - s(0) * (I - I') else I - I' fi .
+    eq min(I, I') = if I < I' then I else I' fi .
 
-red - s(s(s(s(s(0))))) / s(s(0)) .
+    eq odd(0) = false .
+    eq odd(NZNEG) = odd(- s(0) * NZNEG) .
+    eq odd(s(0)) = true .
+    eq odd(s(s(N))) = odd (N) .
+
+    eq even(0) = true .
+    eq even(NZNEG) = even(- s(0) * NZNEG) .
+    eq even(s(0)) = false .
+    eq even(s(s(N))) = even(N) .
+endfm

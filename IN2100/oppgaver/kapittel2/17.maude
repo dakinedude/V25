@@ -1,0 +1,64 @@
+fmod PRED is
+    sorts Zero NzNat NzNeg Nat Neg Int NzInt .
+    subsorts Zero < Nat Neg < Int .
+    subsort NzNat < Nat .
+    subsort NzNeg < Neg .
+    subsorts NzNat NzNeg < NzInt < Int .
+
+    op 0 : -> Zero [ctor] .
+    op s : Nat -> NzNat [ctor] .
+    op p : Neg -> NzNeg [ctor] .
+
+    vars M N : Nat .
+    vars I I' : Int .
+    vars NEG NEG' : Neg .
+    vars NZNEG NZNEG' : NzNeg .
+    vars NZN NZN' : NzNat .
+
+    op abs : Int -> Int .
+    eq abs(N) = N .
+    eq abs(p(NEG)) = abs(NEG) + s(0) .
+
+    ops _+_ _-_ : Int Int -> Int [prec 33] .
+    eq 0 + I = I .
+    eq s(M) + N = s(M + N) .
+    eq p(NEG) + s(N) = NEG + N .
+    eq s(N) + p(NEG) = NEG + N .
+    eq p(NEG) + NEG' = p(NEG + NEG') .
+
+    eq I - 0 = I .
+    eq 0 - s(N) = p(0 - N) .
+    eq s(N) - s(M) = N - M .
+    eq I - NZNEG = I + abs(NZNEG) .
+
+    op _<_ : Int Int -> Bool .
+    eq N < 0 = false .
+    eq 0 < NZNEG = false .
+    eq s(M) < s(N) = M < N .
+    eq NEG < NZN = true .
+    eq NZN < NEG = false .
+    eq NZNEG < N = true .
+    eq p(NEG) < p(NEG') = NEG < NEG' .
+
+    op neg : Int -> Neg .
+    eq neg(NEG) = NEG .
+    eq neg(s(0)) = p(0) .
+    eq neg(s(N)) = p(neg(N)) .
+
+    op _/_ : Int NzInt -> Int [prec 31].
+    eq 0 / I = 0 .
+    eq I / s(0) = I .
+    eq I / I = s(0) .
+    eq s(N) / s(M) = if s(N) < s(M) then 0 else (s(N) / (s(M) + s(M)))  + s(0) fi .
+    eq NEG / NEG' = abs(NEG) / abs(NEG') .
+    ceq I / I' = neg(abs(I) / abs(I')) if I < 0 xor I' < 0 .
+
+    op _*_ : Int Int -> Int [prec 30].
+    ceq I * I' = 0 if I == 0 or I' == 0 .
+    eq s(N) * s(M) = (s(N) * M) + s(N) .
+    ceq I * I' = neg(abs(I) * abs(I')) if I < 0 xor I' < 0 .
+    eq NZNEG * NZNEG' = abs(NZNEG) * abs(NZNEG') .
+
+
+    
+endfm
