@@ -9,13 +9,17 @@ fmod PRED is
     op s : Nat -> NzNat [ctor] .
     op p : Neg -> NzNeg [ctor] .
 
+    sort DefInt .
+    subsort DefInt < Int .
+    op noInt : -> DefInt [ctor] . *** error value
+
     vars M N : Nat .
     vars I I' : Int .
     vars NEG NEG' : Neg .
     vars NZNEG NZNEG' : NzNeg .
     vars NZN NZN' : NzNat .
 
-    op abs : Int -> Int .
+    op abs : Int -> Nat .
     eq abs(N) = N .
     eq abs(p(NEG)) = abs(NEG) + s(0) .
 
@@ -30,6 +34,7 @@ fmod PRED is
     eq 0 - s(N) = p(0 - N) .
     eq s(N) - s(M) = N - M .
     eq I - NZNEG = I + abs(NZNEG) .
+    eq p(NEG) - s(N) = p(p(NEG)) - N .
 
     op _<_ : Int Int -> Bool .
     eq N < 0 = false .
@@ -45,20 +50,57 @@ fmod PRED is
     eq neg(s(0)) = p(0) .
     eq neg(s(N)) = p(neg(N)) .
 
+    var NZI : NzInt .
+
     op _/_ : Int NzInt -> Int [prec 31].
-    eq 0 / I = 0 .
+    eq I / 0 = noInt .
+    eq 0 / NZI = 0 .
     eq I / s(0) = I .
-    eq I / I = s(0) .
+    eq NZI / NZI = s(0) .
     eq s(N) / s(M) = if s(N) < s(M) then 0 else (s(N) / (s(M) + s(M)))  + s(0) fi .
     eq NEG / NEG' = abs(NEG) / abs(NEG') .
     ceq I / I' = neg(abs(I) / abs(I')) if I < 0 xor I' < 0 .
 
     op _*_ : Int Int -> Int [prec 30].
-    ceq I * I' = 0 if I == 0 or I' == 0 .
-    eq s(N) * s(M) = (s(N) * M) + s(N) .
+    eq I * 0 = 0 .
+    eq N * s(M) = (N * M) + N .
     ceq I * I' = neg(abs(I) * abs(I')) if I < 0 xor I' < 0 .
     eq NZNEG * NZNEG' = abs(NZNEG) * abs(NZNEG') .
 
+    ops _<=_ _>_ _>=_ _?=_ : Int Int -> Bool .
+    eq I <= I = true .
+    ceq I <= I' = true if I < I' .
+    ceq I <= I' = false if I' < I .
+    ceq I > I' = true if not (I <= I') .
+    ceq I > I' = false if (I <= I') .
+    eq I >= I = true .
+    ceq I >= I' = true if I > I' .
+    eq I ?= I' = if I == I' then true else false fi .
 
-    
+    op half : Int -> Int .
+    eq half(I) = I / s(s(0)) .
+
+    op diff : Int Int -> Int .
+    eq diff(I, I') = abs(I - I') .
+
+    ops odd even : Int -> Bool .
+    eq odd(0) = false .
+    eq odd(s(0)) = true .
+    eq odd(s(s(N))) = odd(N) .
+    eq odd(NZNEG) = odd(abs(NZNEG)) .
+
+    eq even(0) = true .
+    eq even(s(0)) = false .
+    eq even(s(s(N))) = even(N) .
+    eq even(NZNEG) = even(abs(NZNEG)) .
+
+    op min : Int Int -> Int .
+    eq min(I, I') = if I < I' then I else I' fi .
+
+    op max : Int Int -> Int .
+    eq max(I, I') = if I > I' then I else I' fi .
+
+    op _monus_ : Int Int -> Int .
+    eq I monus I' = max((I - I'), 0) .
+
 endfm
