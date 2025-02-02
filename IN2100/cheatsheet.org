@@ -11,3 +11,5 @@
  - `set trace on .` viser beregningsstegene
  - set include BOOL off .
  - NzNat er vanlig int
+
+ - t :: s er true hviss t har sort s (0 :: Bit --> true)

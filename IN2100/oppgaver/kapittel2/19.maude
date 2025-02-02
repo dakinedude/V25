@@ -1,0 +1,154 @@
+fmod NAT is
+
+    sort Nat .
+
+    *** Konstruktoer
+    op 0 : -> Nat [ctor] .
+    op s : Nat -> Nat [ctor] .
+
+    *** Hjelpefunksjoner (addisjon og mindre-enn)
+    op _+_ : Nat Nat -> Nat .
+    op _<_ : Nat Nat -> Bool .
+
+    op _monus_ : Nat Nat -> Nat .
+    op min : Nat Nat -> Nat .
+    ops odd even : Nat -> Bool .
+    
+    vars M N : Nat .
+
+    *** Addisjon
+    eq 0 + M = M .
+    eq s(M) + N = s(M + N) .
+
+    *** Mindre-enn
+    eq 0 < s(M) = true .
+    eq M < 0 = false .
+    eq s(M) < s(N) = M < N .
+
+    ops _<=_ _>_ _>=_ _==_ : Nat Nat -> Bool .
+    eq N <= N = true .
+    ceq M <= N = true if (M < N) == true .
+    ceq M <= N = false if (M < N) == false .
+
+    ceq M > N = true if (M <= N) == false .
+    ceq M > N = false if (M <= N) == true .
+
+    eq N >= N = true .
+    ceq M >= N = true if (M > N) == true .
+    ceq M >= N = false if (M < N) == true .
+
+    *** monus
+    eq N monus 0 = N .
+    eq 0 monus N = 0 .
+    eq s(N) monus s(M) = N monus M .
+
+    *** min()
+    ceq min(N, M) = N if N < M = true .
+    ceq min(N, M) = M if N < M = false .
+
+    *** odd()
+    eq odd(0) = false .
+    eq odd(s(0)) = true .
+    eq odd(s(s(N))) = odd(N) .
+
+    *** even()
+    eq even(0) = true .
+    eq even(s(0)) = false .
+    eq even(s(s(N))) = even(N) .
+endfm
+
+fmod LIST is
+    protecting NAT .
+
+    sort List .
+
+    op nil : -> List [ctor] .
+    op __ : List Nat -> List [ctor] .
+    op concat : List List -> List . *** hjelpefunksjon til bintree
+    op empty? : List -> Bool .
+    op rest : List -> List . *** Fjerner foerste element
+    op last : List -> Nat .
+    op insert : Nat List -> List . *** Hjelpefunksjon for `reverse`
+    op reverse : List -> List .
+    
+    vars L L' : List .
+    vars N N' : Nat .
+
+    *** hjelpefunksjonen til bintree
+    eq concat(L, nil) = L .
+    eq concat(L, L' N) = concat(L, L') N .
+
+    eq empty?(nil) = true .
+    eq empty?(L N) = false .
+
+    eq rest(nil) = nil .
+    eq rest(nil N) = nil .
+    eq rest(L N N') = rest(L N) N' .
+    
+    eq last(nil) = 0 . *** VIKTIG: Dette er vaar "error value"
+    eq last(L N) = N .
+
+    *** hjelpefunksjonen til reverse()
+    eq insert(N, nil) = nil N .
+    eq insert(N, nil N') = nil N N' .
+    eq insert(N, L N') = insert(N, L) N' .
+
+    eq reverse(nil) = nil .
+    eq reverse(nil N) = nil N .
+    eq reverse(L N N') = insert(N', reverse(L N)) .
+
+    op sorted? : List -> Bool .
+    eq sorted?(nil) = true .
+    eq sorted?(nil N) = true .
+    ceq sorted?(L N N') = true and sorted?(L N) if (N' >= N) == true .
+    ceq sorted?(L N N') = false if (N' >= N) == false . 
+endfm
+
+fmod BINTREE is
+    protecting LIST .
+
+    sorts BinTree BinSearchTree .
+    subsort BinSearchTree < BinTree .
+
+    op empty : -> BinTree [ctor] .
+    op bintree : BinTree Nat BinTree -> BinTree [ctor] .
+
+    ops inorder postorder : BinTree -> List .
+    op weight : BinTree -> Nat .
+    op reverse : BinTree -> BinTree .
+
+    vars BT BT' : BinTree .
+    vars N N' M : Nat .
+
+    cmb BT : BinSearchTree if (isBinSearch(BT) == true) .
+
+    op isBinSearch : BinTree -> Bool .
+    ceq isBinSearch(BT) = true if sorted?(inorder(BT)) == true .
+    ceq isBinSearch(BT) = false if sorted?(inorder(BT)) == false .
+
+    vars BST BST' : BinSearchTree .
+    op insertSorted : BinSearchTree Nat -> BinSearchTree .
+    eq insertSorted(empty, N) = bintree(empty, N, empty) .
+    eq insertSorted(bintree(BST, N, BST'), M) = if (N >= M) then bintree(insertSorted(BST, M), N, BST') else bintree(BST, N, insertSorted(BST', M)) fi .
+    
+    *** left first, then root, then right
+    eq inorder(empty) = nil .
+    eq inorder(bintree(BT, N, BT')) = concat(inorder(BT), concat(nil N, inorder(BT'))) .
+
+    *** left first, then right, then root
+    eq postorder(empty) = nil .
+    eq postorder(bintree(BT, N, BT')) = concat(postorder(BT), concat(postorder(BT'), nil N)) .
+
+    *** i den andre concat() av in- og postorder, saa lager jeg en liste kun bestaaende av N (roten)
+
+    *** summen av alle elementene
+    eq weight(empty) = 0 .
+    eq weight(bintree(BT, N, BT')) = (N + weight(BT)) + weight(BT') .
+
+    *** reversering av treet
+    eq reverse(empty) = empty .
+    eq reverse(bintree(BT, N, BT')) = bintree(reverse(BT'), N, reverse(BT)) .
+endfm
+
+*** red insertSorted(bintree(bintree(empty, s(s(0)), empty), s(0), empty), s(s(0))) .
+red insertSorted(insertSorted(bintree(empty, s(0), empty), 0), s(s(0))) .

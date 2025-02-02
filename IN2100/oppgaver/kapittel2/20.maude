@@ -1,0 +1,16 @@
+fmod PRIME is
+    protecting NAT .
+    vars N I : NzNat .
+
+    op isPrime : NzNat -> Bool .
+    ceq isPrime(N) = false if N <= 1 .
+    eq isPrime(2) = true .
+    eq isPrime(3) = true .
+    ceq isPrime(s s s N) = false if (2 divides s s s N) or (3 divides s s s N) .
+    eq isPrime(N) = check(5, N) .
+
+    op check : NzNat NzNat -> Bool .
+    ceq check(I, N) = true if I ^ 2 > N .
+    ceq check(I, N) = false if (I divides N) or (I + 2 divides N) .
+    eq check(I, N) = check(I + 6, N) .
+endfm 

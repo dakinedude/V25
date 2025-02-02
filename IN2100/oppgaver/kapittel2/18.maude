@@ -1,0 +1,9 @@
+*** NZN <= NEG is the solution
+*** N <= NZNEG does not check for when left size is zero
+
+op _ <= _ : Int Int -> Bool .
+eq NEG <= N = true .
+eq NZN <= NEG = false .
+eq (- NZN) <= (- NZN') = NZN' <= NZN .
+eq s(M) <= s(N) = M <= N .
+eq I <= I = true .

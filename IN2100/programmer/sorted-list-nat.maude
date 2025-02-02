@@ -1,0 +1,11 @@
+in list-nat1.maude
+
+fmod SORTED-LIST-NAT1 is
+    protecting LIST-NAT1 .
+    sort SortedList .
+    subsort SortedList < List .
+
+    var L : List .
+    cmb L : SortedList if sorted?(L) = true .
+endfm
+    

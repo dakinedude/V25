@@ -87,4 +87,13 @@ fmod INT is
     eq even(NZNEG) = even(- s(0) * NZNEG) .
     eq even(s(0)) = false .
     eq even(s(s(N))) = even(N) .
+
+    *** ex 18
+    op _ <= _ : Int Int -> Bool .
+    eq NEG <= N = true .
+    eq NZN <= NEG = false .
+    eq (- NZN) <= (- NZN') = NZN' <= NZN .
+    eq s(M) <= s(N) = M <= N .
+    eq I <= I = true .
+
 endfm

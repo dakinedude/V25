@@ -1,0 +1,14 @@
+*** `trunc` "shortens" the number, removing any decimals
+*** `floor` is similar, but it always rounds down to nearest int,
+*** so when operating on negative numbers, `trunc` would
+*** round up, and `floor` would round down
+*** `floor` always rounds up to the nearest integer, so
+*** when operating on negative numbers, it behaves
+*** similarly to `trunc`.
+*** `frac` gives the decimal numbers of a number in fractal form
+
+red floor(- 21 / 5) == -5 .
+red ceiling(- 21 / 5) == trunc(- 21 / 5) .
+red frac(5/2) == 1/2 .
+
+*** all evaluate to `true`
