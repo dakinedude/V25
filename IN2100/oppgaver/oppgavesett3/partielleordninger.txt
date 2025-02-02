@@ -1,0 +1,32 @@
+1.
+i. m er deleling med m :: hvis m er deleling med n og n er deleling med m, saa m == n :: hvis m | n og n | p saa m | p
+== for alle positive naturlige tall, er |-relasjonen er partiell ordning (DERSOM MAN IKKE REGNER 0 SOM NATURLIG TALL)
+
+ii. Samme som sist, men her gjelds ikke 0, saa da definitivt en partiell ordning
+
+iii. Er det slik at for alle tall z slik at z \in Z - {0} saa: z | z :: hvis z | z' og z' | z saa z == z' :: hvis z | z' og z' | z'' saa z | z''
+
+Antisym-delen gjelder ikke. Motseksempel: 20 | - 20 /\ - 20 | 20 /\ 20 != - 20
+
+2.
+Dette er ikke en partiell ordning, fordi den ikke er refleksiv. m == m /\ \neg m != m
+
+3.
+Refleksiv? Ja, fordi l == l
+Antisym? Ja, fordi hvis l >= l', og l' >= l, saa l == l
+Transitiv? Ja hvis l > l' og l' > l'' saa l > l''
+
+(dette er en total ordning)
+
+4.
+Dette er ikke en total ordning, for ingen er formoder til seg selv.
+
+Strikte partielle:
+
+Ingen i 1., fordi de er relfleksive (alle tall er delelige med seg selv)
+
+2. er ikke en strikt partiell ordning, for m R n og n R m for alle m, n slik at m !=n (alle tall er hverandre ulike), saa den er symmetrisk
+
+3. er en strikt partiell ordning dersom man fjerner 'er lik'-delen
+
+4. er en strikt partiell ordning, for en formoder gaar bare 'en vei', er ikke moder til seg selv, og er transitiv.

@@ -1,0 +1,97 @@
+fmod ROMAN is
+    protecting INT .
+    protecting NAT .
+
+    sorts Numerals Num .
+    subsort Num < Numerals .
+
+    vars R R' : Numerals .
+    vars N N' : Num .
+    var I : Int .
+    var NAT : Nat .
+    
+    mb nil N : Num . 
+
+    op nil : -> Numerals [ctor] .
+    ops I V X L C D M : -> Num [ctor] .
+    op __ : Numerals Num -> Numerals [ctor] .
+
+    op insert : Numerals Num -> Numerals .
+    eq insert(N, nil) = nil N .
+    eq insert(N, nil N') = nil N N' .
+    eq insert(N, R N') = insert(N, R) N' .
+
+    op reverse : Numerals -> Numerals .
+    eq reverse(nil) = nil .
+    eq reverse(nil N) = nil N .
+    eq reverse(R N N') = insert(N', reverse(R N)) .
+    
+    op _++_ : Numerals Numerals -> Numerals .
+    eq R ++ nil = R .
+    eq R ++ (R' N) = (R ++ R') N .
+    
+    op roman : Nat -> Numerals .
+    eq roman(0) = nil .
+    ceq roman(NAT) = (nil M) ++ roman(NAT - 1000) if NAT >= 1000 .
+    ceq roman(NAT) = (nil C M) ++ roman(NAT - 900) if NAT >= 900 .
+    ceq roman(NAT) = (nil D) ++ roman(NAT - 500) if NAT >= 500  .
+    ceq roman(NAT) = (nil C D) ++ roman(NAT - 400) if NAT >= 400 .
+    ceq roman(NAT) = (nil C) ++ roman(NAT - 100) if NAT >= 100 .
+    ceq roman(NAT) = (nil X C) ++ roman(NAT - 90) if NAT >= 90 .
+    ceq roman(NAT) = (nil L) ++ roman(NAT - 50) if NAT >= 50 .
+    ceq roman(NAT) = (nil X L) ++ roman(NAT - 40) if NAT >= 40 .
+    ceq roman(NAT) = (nil X) ++ roman(NAT - 10) if NAT >= 10 .
+    ceq roman(NAT) = (nil I X) ++ roman(NAT - 9) if NAT >= 9 .
+    ceq roman(NAT) = (nil V) ++ roman(NAT - 5) if NAT >= 5 .
+    ceq roman(NAT) = (nil I V) ++ roman(NAT - 4) if NAT >= 4 .
+    ceq roman(NAT) = (nil I) ++ roman(NAT - 1) if NAT >= 1 .
+
+    op decimal : Numerals -> Int .
+    eq decimal(R) = dechelp(reverse(R)) .
+
+    op dechelp : Numerals -> Int .
+    eq dechelp(nil N) = dechelp(N) .
+    eq dechelp(I) = 1 .
+    eq dechelp(X) = 10 .
+    eq dechelp(C) = 100 .
+    eq dechelp(M) = 1000 .
+    eq dechelp(V) = 5 .
+    eq dechelp(L) = 50 .
+    eq dechelp(D) = 500 .
+    eq dechelp(R N N') = if (dechelp(N) > dechelp(N')) then (dechelp(R N) - dechelp(N')) else (dechelp(R N) + dechelp(N')) fi .
+endfm
+
+red roman(1) == (nil I) .
+red roman(4) == (nil I V) .
+red roman(9) == (nil I X) .
+red roman(10) == (nil X) .
+red roman(14) == (nil X I V) .
+red roman(40) == (nil X L) .
+red roman(49) == (nil X L I X) .
+red roman(50) == (nil L) .
+red roman(90) == (nil X C) .
+red roman(99) == (nil X C I X) .
+red roman(100) == (nil C) .
+red roman(400) == (nil C D) .
+red roman(500) == (nil D) .
+red roman(900) == (nil C M) .
+red roman(1000) == (nil M) .
+red roman(1987) == (nil M C M L X X X V I I) .
+red roman(2024) == (nil M M X X I V) .
+
+red decimal((nil I)) == 1 .
+red decimal((nil I V)) == 4 .
+red decimal((nil I X)) == 9 .
+red decimal((nil X)) == 10 .
+red decimal((nil X I V)) == 14 .
+red decimal((nil X L)) == 40 .
+red decimal((nil X L I X)) == 49 .
+red decimal((nil L)) == 50 .
+red decimal((nil X C)) == 90 .
+red decimal((nil X C I X)) == 99 .
+red decimal((nil C)) == 100 .
+red decimal((nil C D)) == 400 .
+red decimal((nil D)) == 500 .
+red decimal((nil C M)) == 900 .
+red decimal((nil M)) == 1000 .
+red decimal((nil M M X X I V)) == 2024 .

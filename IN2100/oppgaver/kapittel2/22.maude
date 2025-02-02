@@ -23,7 +23,7 @@ endfm
 
 red europify("49ers 32 Giants 48") .
 red europify("Lakers 190 Rangers 23") .
-
+*** BETTER SOLUTION: Make a `split` function that makes a list of strings to index into
 
 *** substr(S, 0, find(S, " ", 0)) + " - " + substr(S, find(S, " ", find(S, " ", 0) + 1) + 1, sd((find(S, " ", find(S, " ", 0) + 1) + 1) + 1, (find(S, " ", find(S, " ", find(S, " ", 0) + 1) + 1) + 1)))
 *** red substr(S, find(S, " ", find(S, " ", find(S, " ", 0) + 1) + 1) + 1, sd(length(S), find(S, " ", find(S, " ", find(S, " ", 0) + 1) + 1) + 1)) .

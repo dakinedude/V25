@@ -1,0 +1,12 @@
+fmod BINARY is
+    protecting NAT .
+    protecting STRING .
+    protecting CONVERSION .
+
+    var N : Nat .
+
+    op binary : Nat -> Nat .
+    eq binary(0) = 0 .
+    eq binary(1) = 1 .
+    eq binary(N) = binary(floor(N / 2)) * 10 + (N rem 2) .
+endfm
