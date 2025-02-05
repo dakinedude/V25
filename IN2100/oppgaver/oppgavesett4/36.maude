@@ -1,0 +1,22 @@
+in list-int.maude
+
+fmod MERGE-SORT is
+    protecting LIST-INT .
+
+    op mergeSort : List -> List .
+    op merge : List List -> List [comm] .
+
+    vars L L' : List .
+    vars NEL NEL' NEL'' : NeList .
+    vars I J : Int .
+
+    eq mergeSort(nil) = nil .
+    eq mergeSort(I) = I .
+    eq mergeSort(I J) = if I <= J then I J else J I fi .
+    ceq mergeSort(NEL NEL' NEL'') = merge(mergeSort(NEL), mergeSort(NEL' NEL''))
+      if length(NEL) == length(NEL' NEL'') or
+          length(NEL) + 1 == length(NEL' NEL'') .
+
+    eq merge(nil, L) = L .
+    ceq merge(I L, J L') = I merge(L, J L') if I <= J .
+endfm

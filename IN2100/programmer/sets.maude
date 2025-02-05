@@ -1,0 +1,15 @@
+fmod SETS is
+    protecting INT .
+
+    sorts NeSet Set .
+    subsorts Int < NeSet Set .
+
+    op empty : -> Set [ctor] .
+    op __ : NeSet NeSet -> NeSet [ctor assoc comm id: empty] .
+    op __ : Set Set -> Set [ctor assoc comm id: empty] .
+    eq I I = I .
+
+    var I : Int .
+endfm
+    
+    

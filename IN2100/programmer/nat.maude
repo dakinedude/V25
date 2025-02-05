@@ -1,4 +1,7 @@
+in boolean.maude
+
 fmod NAT is
+    protecting BOOLEAN .
     sort Nat .
     op 0 : -> Nat [ctor] .
     op s : Nat -> Nat [ctor] .
@@ -6,17 +9,16 @@ fmod NAT is
     op _*_ : Nat Nat -> Nat .
     op half : Nat -> Nat .
     ops _monus_ diff min : Nat Nat -> Nat .
-    ops odd even : Nat -> Bool .
-    ops _<=_ _>_ _>=_ _==_ : Nat Nat -> Bool .
-    op _<_ : Nat Nat -> Bool .
+    ops odd even : Nat -> Boolean .
+    ops _<=_ _>_ _>=_ _==_ : Nat Nat -> Boolean .
+    op _<_ : Nat Nat -> Boolean .
 
     vars M N : Nat .
 
     eq 0 + M = M .
     eq s(M) + N = s(M + N) .
 
-    eq 0 * N = 0 .
-    eq s(M) * N = N + (M * N) .
+
 
     eq 0 < s(M) = true .
     eq M < 0 = false .

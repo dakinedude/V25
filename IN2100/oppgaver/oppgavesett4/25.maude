@@ -1,0 +1,15 @@
+fmod COMM1 is
+    sort s .
+    ops a b c : -> s .
+    op f : s s -> s [comm] .
+    eq f(a, b) = b .
+endfm
+
+red f(f(b,a), a) .
+*** ~> f(f(a, b), a) ~> f(b, a) ~> f(a, b) ~> b
+red f(b, b) .
+*** ~> f(b, b)
+red f(f(a,b), f(b, a)) .
+*** ~> f(b, f(a, b)) ~> f(b, b)
+red f(c, a) .
+*** ~> f(a, c) .

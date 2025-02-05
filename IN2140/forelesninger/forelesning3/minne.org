@@ -1,0 +1,210 @@
+*** Memory management
+
+Kjoerende Prosesser maa faa det minnet de trenger;
+
+Disse maa kunne beskyttes fra andre prosesser;
+
+Det er ikke sikkert at det er nok minne for alle; men man maa faa inntrykket av det
+
+Man gjoer dette vha. et minnehierki
+
+
+*** Minnehierarki
+
+et hierarki hvor du har minnetyper mtp. pris, hastighet og kapasitet
+
+(registre) <>   Cache <> Sekundaerminne <> Statisk minne <> Tertiaert minne
+                pris ----------------------------------------------------->
+                hastighet ------------------------------------------------>
+                kapasitet------------------------------------------------>
+
+Faktisk er det aa skrive til sekundaerminnet, helt ufattelig tregt
+
+
+*** Absolute and Relative addressing
+
+Absolutt = et helt fastsatt minneomraade (reserverte minneomraader)
+
+Hardware bruker ofte absolutt adressing
+
+Fint, enkelt aa raskt
+
+Hva med programvare?
+
+Et program kjoerer ikke alltid paa samme plass i minnet. 
+
+Vi maa bruke RELATIV allokering:
+
+
+Naar vi lager programmet, maa vi beregne hvordan addresing internt i programmet skal vaere:
+
+Dette gjoeres relativt til foerste byte (baseadresse) --> relativ adresse utregnes deretter
+
+
+*** PROCESS MEMORY LAYTOUT
+
+Vi har et kodesegment (instruksjoner)
+
+Datasegment (initialiserte/(deretter)unitialiserte globale/statiske variabler, HEAP)\
+
+HEAP: Et dynamisk minnomraade som blir allokert vha. malloc
+
+Stack-segmentet (parametre, variabler, en frame pr. funksjon)
+
+heapen gror oppover, stacken gror nedover
+
+Mellom heap og stack er det ubrukt minne
+
+Oeverst: PCB (process control block)
+
+Underst: mulige argumenter og thread stacks
+
+*** GLOBAL MEMORY LAYOUT
+
+Dele opp hele systemminnet:
+
+Residente vs. transiente omraader:
+
+1 System control infromation
+2 Residente (lave adresser) = systeminformasjonre (kernel)
+3 Transient area (application programs and transient operating system routines)
+
+*** Memory management for multiprogramming
+
+Del opp det transiente omraadet i deler, slik at alle faar tilgang til minneressurser
+
+-- Sekunderminne: ineffektivt
+-- Swapping: fjerne en prosess fra minnet og legge den inn paa disken (tungvint og tidskrevende)
+-- Overlays: Manuelt erstatte deler av kode/data (programmereren maa gjoere det selv)
+^^^ Disse er veldig ineffektive
+-- Segmentering/paging: fjerne deler av en prosess fra minne
+
+*** FIXED PARTITIONING
+
+Alle brukere faar en egen partisjon:
+-- rettferdig
+-- enkelt
+-- kan swappes
+
+Koer?
+
+Problemer:
+-- Store programmer kan ikke kjoere
+-- Smaa programmer bruke ikke hele minnet
+
+Loesning? Lag ulike stoerrelses partisjoner
+
+==> Ubrukte store partisjoner, stor intern fragmentering
+
+*** DYNAMIC PARTITIONING
+
+Partisjoner opprettes dynamisk, og frigjoeres deretter -- man putter seg selv inn der man har plass
+
+Typisk ender man dog opp med mange smaa partisjoner
+
+Loesning: Compaction:
+
+Slaa sammen ledige fragmenter til en stoerre partisjon.
+
+Problemet er at man maa flytte ALLE dataer, byte for byte, i minnet
+
+==> dette er ekstremt tungt og dyrt (det maa gjennom CPU-en)
+
+En algoritme kan redusere noedvendigheen for compaction:
+
+-- first fit: man proever aa starte paa begynnelsen av minnet, man soeker til man finner en passende partisjon, og velger den
+--- problemet er at mange vil ende i bunn
+-- next fit: Finne det som passer best, etter den foerste
+-- best fit: finne den partisjonen som er naermest og riktig stoerrelse
+--- Tar lang tid, og kan foere til fragmentering, fordi compaction er dyrt
+
+Ofte first fit best -- next fit er mer kostbar (hvor var du sist?)
+
+*** THE BUDDY SYSTEM
+
+En blanding av statisk og dynamisk partisjonering
+
+Hele tiden allokere partisjoner av 2er potens
+
+Vi trenger en partisjon av en viss stoerrelse, og finner den som er minst mulig mens fortsatt passer,
+og hvis den kan deles i to, saa tar du den som kan deles i to (du spillet kontinerlig i to)
+
+Altsaa deles partisjoner i to, i to, i to, til vi faar den minste som fortsatt passer
+
+Tilsvarende rutine for aa rydde opp naar en prosess er ferdig -- vi maa slaa den sammen
+
+Slaa sammen tilhoerende med tilhoerende (som i 2048-spillet) -- og kun naboer kan slaas sammen
+
+*** Segmentation
+
+Hva om ikke alle bytene jeg trenger, ligger kontinuerlig i minne?
+
+La noe ligge pa en adresse, resten paa en annen -- og en helt annen prosess imellom
+
+Vi vil dele minnet i segmenter, hvor hver prosess kan ha flere segmenter (memory frames)
+
+--> Kostnad: ekstraa steg i beregning av prosessen
+
+1: Finn segmentene prosessen bestaar av (segment table)
+2: Tabellen bestaar av to deler: nummer og index (hvor langt inn i segmentet skal jeg) -- finn nummer
+3: Finn adresse
+4: Finn absolutt adresse innad i segmentet vha. relativ adresse
+
+*** Paging
+(VANLIG PAGEstr er 4KB)
+
+Er det mulig aa beholde fleksibilitet til segmentering kombinert med enklere segmentering?
+
+Hvert enkelt segment er ikke av ulik stoerrelse:
+
+Hver page er smaa, faste stoerrelse, og prosessen maa deles ut over mange av dem
+
+Dette er enklere, fordi vi vet hvor stor hver page er, og fragmenteringen er liten (dess mindre page, dess mindre fragmentering)
+
+(Prosessen lastes ikke noedvendigvis inn consecutively)
+
+ingen ekstern fragmentering (DET BLIR INGEN HULL MELLOM PAGES), liten intern (kaster bort veldig litem siden pages er smaa)
+
+Adresser oversettes paa runtime
+
+Kan kombineres med segmentering
+
+*** VIRTUAL MEMORY
+
+Hvordan vet jeg at jeg har plass til min prosess?
+
+==> Vi oensker aa gi alle prosesser illusjonen av at de kan starte,
+men dette haandteres fra systemsiden
+
+Hver prosess tilbys et maksimalt adresserom som den kan bruke for aa haandtere sin utfoerelse av programmet
+
+Man brekker opp programmet i minneomraade som man trenger, og kombinert med pageing er virtuelt page ogsaa mulig
+
+Og man bruker en page tabell for oversettelsen fra virtuelt til hardware
+
+Hver enkelt prosess faar illusjon av at den har (4GB) plass i minnet.
+
+EKSEMPEL:
+
+En prosess lastes inn: Noe er det plass til i minnet, resten maa ligge i disken
+Systemet haandteres hva som ligger hvor
+Saa naar det gjoeres et oppslag, sjekkes det (i det virtuelle minnet) om dataen ligger paa disken eller i minnet
+Dersom data ligger paa disken, kommer systemet til aa blokkere dette kallet, og forsoeke aa finne plass til dette i minnet.
+
+Og slik oppdateres denne kartleggingen mellom virtuel minne og disk/fysisk minne.
+
+*** PAGE FAULT
+
+contextswitch, trap ned til kjernen
+
+kaller en rutine for pagefault
+
+sjekker om siden som forsoekes aksessert er gyldig
+
+sjekker: er det plass i minnet?
+
+er det ikke plass, maa noe erstattes
+
+kan lese fra disk og putte i minnet
+
+kjoer context switch i motsatt rekkefoelge

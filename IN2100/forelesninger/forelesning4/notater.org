@@ -1,0 +1,12 @@
+*** Operasjonell semantikk:
+
+Operasjonell semantikk til likhetsspes.: bruk likninger fra venstre til hoeyre
+
+Substitusjon gjoeres IKKE rekursivt
+
+*** Match
+
+Term t matcher term u hvis det finnes en substitusjon sigmas lik at t sigma = u
+
+f(x, x, y) matcher f(a, a, b) med ikke f(a, b, a)
+^ f(x, x, y){x -> a, y -> b}

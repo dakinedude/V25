@@ -1,0 +1,16 @@
+fmod MSET is
+    protecting Int .
+    sort Mset .
+    subsorts Nat < Mset .
+    op none : -> Mset [ctor] .
+    op __ : Mset Mset -> Mset [ctor assoc comm id: none] .
+
+    op delete : Nat Mset -> Mset .
+    eq delete(I, none) = none .
+    eq delete(I, J MS) = if I == J then MS else delete(I, MS) J fi .
+
+    sort List .
+    subsort Nat < List .
+    op nil : -> List [ctor] .
+    op _::_ : List List -> List [assoc ctor id: nil] .
+endfm

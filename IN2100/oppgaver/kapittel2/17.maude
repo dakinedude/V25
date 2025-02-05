@@ -50,13 +50,13 @@ fmod PRED is
     eq neg(s(0)) = p(0) .
     eq neg(s(N)) = p(neg(N)) .
 
-    var NZI : NzInt .
+    vars NZI NZI' : NzInt .
 
     op _/_ : Int NzInt -> Int [prec 31].
     eq I / 0 = noInt .
     eq 0 / NZI = 0 .
     eq I / s(0) = I .
-    eq NZI / NZI = s(0) .
+    ceq NZI / NZI' = s(0) if NZI = NZI' .
     eq s(N) / s(M) = if s(N) < s(M) then 0 else (s(N) / (s(M) + s(M)))  + s(0) fi .
     eq NEG / NEG' = abs(NEG) / abs(NEG') .
     ceq I / I' = neg(abs(I) / abs(I')) if I < 0 xor I' < 0 .
@@ -68,14 +68,15 @@ fmod PRED is
     eq NZNEG * NZNEG' = abs(NZNEG) * abs(NZNEG') .
 
     ops _<=_ _>_ _>=_ _?=_ : Int Int -> Bool .
-    eq I <= I = true .
+    ceq I <= I' = true if I == I' .
     ceq I <= I' = true if I < I' .
     ceq I <= I' = false if I' < I .
     ceq I > I' = true if not (I <= I') .
     ceq I > I' = false if (I <= I') .
-    eq I >= I = true .
+    ceq I >= I' = true if I == I' .
     ceq I >= I' = true if I > I' .
-    eq I ?= I' = if I == I' then true else false fi .
+    ceq I >= I' = false if I' > I .
+    eq I ?= I' = (I >= I') and (I <= I') .
 
     op half : Int -> Int .
     eq half(I) = I / s(s(0)) .

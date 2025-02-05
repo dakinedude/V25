@@ -1,5 +1,5 @@
 fmod NAT is
-
+    protecting BOOL .
     sort Nat .
 
     *** Konstruktoer
@@ -59,6 +59,7 @@ endfm
 
 fmod LIST is
     protecting NAT .
+    protecting BOOL .
 
     sort List .
 
@@ -106,6 +107,7 @@ endfm
 
 fmod BINTREE is
     protecting LIST .
+    protecting BOOL .
 
     sorts BinTree BinSearchTree .
     subsort BinSearchTree < BinTree .

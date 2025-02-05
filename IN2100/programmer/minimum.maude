@@ -1,0 +1,5 @@
+fmod MIN1 is protecting INT .
+    op minimum : Int Int -> Int [comm] .
+    vars I J : Int .
+    ceq minimum(I, J) = I if I <= J .
+endfm

@@ -12,14 +12,14 @@ fmod NAT1 is
     ops odd even : Nat -> Boolean .
     ops _<=_ _>_ _>=_ _==_ : Nat Nat -> Boolean .
 
-    ceq M <= N = true if M = N .
+    ceq M <= N = true if M == N .
     ceq M <= N = true if M < N = true .
     ceq M <= N = false if M < N = false .
 
     ceq M > N = true if M <= N = false .
     ceq M > N = false if M <= N = true .
 
-    ceq M >= N = true if M = N .
+    ceq M >= N = true if M == N .
     ceq M >= N = true if M > N = true .
     ceq M >= N = false if M < N = true .
 

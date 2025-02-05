@@ -1,0 +1,6 @@
+fmod COMM1 is
+    sort s .
+    op f : s s -> s [comm] .
+    ops a b c : -> s .
+    eq f(a, b) = b .
+endfm

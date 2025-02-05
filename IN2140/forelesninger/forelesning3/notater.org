@@ -1,0 +1,107 @@
+*** Minne (forts.)
+Mange prosesser oensker aa bruke samme ressurs, paa samme tid
+
+Scheduler fordeler ressursen basert paa en skeduleringsalgritme
+
+Idag er det vanlig aa skedulere vha. prioriteter: "One system to rule them all ..."
+
+*** Priority scheduling
+
+Hver prosess faar en prioritet, og paa hvert prioritetsnivaa er det en koe som det kjoeres Round Robin paa (typisk timeslice paa 10ms)
+
+Naar en koe er tom, gaar vi ned til neste koe
+
+Problemet er at vi risikerer at enkelte prosesser aldri faar komme til (de lavere prioriteter)
+
+Loesningen er aa la prioritetene vaere dynamiske: Hvis du har ventet lenge, gaar du opp i prioritet, hvis du bruker mye CPU, gaar du ned
+
+*** WINDOWS 2000, XP, ...
+
+Servere (tungregning) fikk lange timeslices
+
+Workstations (mer interaktivitet) fikk kortere
+
+32 prioritetsnivaaer: 32 forskjellige koer av prosesser
+
+Interaktiv og throughput-orientert (kort tid fra forespoersel, til terminering):
+
+De 16 oeverste er "real time" (systemnivaaer som bare systemprosesser bruker)
+
+De neste 15 er brukernivaaer:
+- prioritetene vil forandres dynamisk +- 2
+- Mye CPU senker prioritet
+- mye interaktivitet/IO gir hoyere
+
+Det siste nivaaet er en slags opprydningsprosess (garbage coll. osv)
+
+*** WINDOWS 8/10
+
+Fortsatt de samme 32 nivaaene, med de 16 oeverste som realtime og den neste 15 som brukernivaare
+
+Men naa 6 forskjellige klasser: Hvilken prioritet kommer an paa hvilken klasse du er i
+
+User mode scheduling (UMS):
+Bruker kan skedulere sin egen skeduleringsalgoritme
+Ikke realtime (Kun de 15 brukernivaaer)
+
+Multimedia class scheduler services (MMCSS)
+Spesiel support for time-sensitive processing
+
+
+*** LINUX
+Preemptive kjerne, 100 nivaaer
+
+Deler opp i tre forskjellige klasser:
+- SCHED_FIFO
+  Veldig like realtime paa windows (kan kjoere evig, ingen timeslices)
+  Kan brukere egne algoritmer
+- SCHED_RR
+  Litt like SCHED_FIFO, men her er det timeslices med round robin
+- SCHED_OTHER
+  "ordinaere" brukerprosesser, hvor det ikke er 100 forskjellige nivaaer, men 40 (nice-verdier/nivaaer)
+  `nice` gir prioriteter til egne prosesser
+
+Gjoer skedulering basert paa goodness:
+
+To oeverste klasser: Prioritet + 1000 (SCHED_FIFO og SCHED_RR)
+
+For SCHED_OTHER:
+
+Regnes ut paa prioritet, og hvor mye du har brukt av din timeslice
+
+goodness = (quantum > 0 ? quantum + priority : 0) (den resettes hvis du har brukt opp)
+
+*** SCHEDULING I LINUX
+
+Completely Fair Sheduler (CFS)
+
+Lav prioritet: kjoeretid spises opp fortere, enn hoey prioritet
+
+
+*** When to invoke the scheduler?
+
+Naar en prosess startes
+
+Naar en prosess terminerer (velg en ny en)
+
+Naar en prosess blokkeres
+
+Naar det er en interrupt
+
+Timeslots/klokke (scheduler kjoeres)
+
+*** MULTICORE
+
+Alle henter fra en koe?
+
+Men da blir koen i seg selv en krigssone
+
+Saa den maa laases
+
+Loesning: En koe pr. prosessor
+
+Men hva om en prosesssor faar tunge prosesser, og de andre faar lette? (bottlenecks)
+
+Load balancing:
+
+Linux sjekker hvert 200 ms

@@ -1,0 +1,7 @@
+Remember than order of elements does not matter in multisets
+
+delete(2017, 1 2 2017 3) ~*> 1 2 3
+
+Because the conditional ensures that 2017 is in the multiset,
+maude will swap arond its elements until it "finds" 2017 [rest of MS],
+and return the MS without it.

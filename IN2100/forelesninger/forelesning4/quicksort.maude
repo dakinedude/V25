@@ -1,0 +1,13 @@
+fmod QUICK is
+    op quicksort : List -> List .
+
+    vars L L' : List .
+    vars M N : Int . 
+
+    eq quicksort(nil) = nil .
+    eq quicksort(L N L') = *** N er vilkaarlig element
+        quicksort(smallerElements(L L', N)) *** alle elementer mindre enn N (pivot element)
+        equalElements(L N L', N)
+        quicksort(greaterElements(L L', N)) . *** alle elementer stoerre enn N (pivot element)
+    
+endfm

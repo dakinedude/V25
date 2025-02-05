@@ -1,4 +1,4 @@
-* Basics
+*** Basics
  - fmod MODULENAME is
       body (en MENGDE av deklarasjoner)
    endfm
@@ -11,5 +11,18 @@
  - `set trace on .` viser beregningsstegene
  - set include BOOL off .
  - NzNat er vanlig int
+ - [idem] for idempotens
 
  - t :: s er true hviss t har sort s (0 :: Bit --> true)
+
+*** Lister, assoc, comm, id
+fmod LIST is
+    protecting INT .
+    sort List .
+    subsort Int < List .
+    op nil : -> List [ctor] .
+    op __ : List List -> List [ctor assoc id: nil] .
+endfm
+
+
+   

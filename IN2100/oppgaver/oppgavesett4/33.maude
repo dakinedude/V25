@@ -1,0 +1,36 @@
+fmod SET is
+    protecting INT .
+    sort Set NeSet .
+    subsort Int < NeSet < Set .
+
+    op none : -> Set [ctor] .
+    op __ : NeSet NeSet -> NeSet [ctor assoc comm id: none prec 40] .
+    op __ : Set Set -> Set [ctor assoc comm id: none prec 40] .
+    eq I I = I .
+
+    vars I J : Int .
+    vars Q R S : Set .
+
+    op _in_ : Int Set -> Bool .
+    eq I in none = false .
+    eq I in J Q = if I == J then true else I in Q fi .
+
+    op delete : Int Set -> Set .
+    eq delete(I, Q I) = Q .
+    ceq delete(I, Q) = Q if not I in Q .
+
+    op card : Set -> Int .
+    eq card(none) = 0 .
+    eq card(I Q) = card(Q) + 1 .
+
+    op _\_ : Set Set -> Set [prec 41] .
+    eq none \ Q = none .
+    eq (Q I) \ R = if not I in R then I (Q \ R) else (Q \ R) fi .
+
+    op _cap_ : Set Set -> Set [comm assoc prec 41] .
+    eq none cap Q = none .
+    eq (Q I) cap (R) = if I in R then I (Q cap R) else Q cap R fi .
+
+
+endfm
+    

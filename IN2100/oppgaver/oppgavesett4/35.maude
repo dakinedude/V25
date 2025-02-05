@@ -1,0 +1,37 @@
+in list-int.maude
+
+*** It terminates, because a list has a first and a last, as long as its length is
+*** at least one. The pivot number is arbitrarily chosen as a reference point.
+*** The lists 'below' and 'above' this/these equal numbers (which may or may not exist)
+*** get quicksorted recursively, effectively being reduced to nil, and finally con-
+*** catinated together.
+
+fmod QUICK-SORT is protecting LIST-INT .
+
+    vars L L' : List .
+    vars M N : Int .
+
+    op quicksort : List -> List .
+    eq quicksort(nil) = nil .
+    eq quicksort(L) =
+        quicksort(smallerElements(L, (first(L) + last(L)) quo 2))
+        equalElements(L, (first(L) + last(L)) quo 2)
+        quicksort(greaterElements(L, (first(L) + last(L)) quo 2)) .
+
+    ops smallerElements greaterElements equalElements : List Int -> List .
+
+    eq smallerElements(nil, M) = nil .
+    eq smallerElements(N L, M) = if N < M then
+          (N smallerElements(L, M))
+        else smallerElements(L, M) fi .
+
+    eq equalElements(nil, N) = nil .
+    eq equalElements(N L, M) = if N == M then
+          (N equalElements(L, M))
+        else equalElements(L, M) fi .
+
+    eq greaterElements(nil, M) = nil .
+    eq greaterElements(N L, M) = if N > M then
+          (N greaterElements(L, M))
+          else (greaterElements(L, M)) fi .
+endfm

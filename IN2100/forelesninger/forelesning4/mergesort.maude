@@ -1,0 +1,9 @@
+fmod MERGE is
+    op mergeSort : List -> List .
+
+
+    op merge : List List -> List [comm] .
+    eq merge(nil, L) = L .
+    ceq merge(I L, J L') = I merge (L, J L') if I <= J .
+    
+endfm

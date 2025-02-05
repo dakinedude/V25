@@ -1,0 +1,8 @@
+*** nonterminating
+fmod ID is
+    sort s .
+    ops a b e : -> s [ctor] .
+    vars X Y : s .
+    op f : s s -> s [id: e] .
+    eq f(X, Y) = a .
+endfm
