@@ -1,0 +1,33 @@
+in graph.maude
+
+fmod HAMILTON is including GRAPH .
+
+    op hamilton : Graph -> Bool .
+    eq hamilton((node: N nbs: NBS) ; NS) = circuit(N, NBS, NS) .
+
+    op circuit : NodeId NodeIdSet Graph -> Bool .
+    eq circuit(N, N1 NBS, (node: N1 nbs: NBS2) ; NS)
+      = circuit(N, NBS2, NS)
+        or circuit(N, NBS, (node: N1 nbs: NBS2) ; NS) .
+
+    ceq circuit(N, N1 NBS, NODE ; NS) =
+        circuit(N, NBS, NODE ; NS) if not (N1 in NODE ; NS) .
+
+    op _in_ : NodeId Graph -> Bool .
+    eq N in ((node: N1 nbs: NBS2) ; NS) = (N == N1) or (N in NS) .
+    eq N in emptyGraph = false .
+
+    eq circuit(N, none. NODE ; NS) = false .
+
+    eq circuit(N, NBS, emptyGraph) = (N in NBS) .
+
+    op _in_ : NodeId NodeIdSet -> Bool .
+    eq N in none = false .
+    eq N in N1 NBS = (N == N1) or N in NBS .
+
+    vars N N1 : NodeId .
+    vars NBS NBS2 : NodeIdSet .
+    var NS : Graph .
+    var NODE : Node .
+    
+endfm 

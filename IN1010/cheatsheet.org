@@ -1,5 +1,4 @@
 * JAVA CHEATSHEET
-
 *** Bruker-input ***
 - import java.util.Scanner;
 - Scanner input = new Scanner(System.in);
@@ -62,3 +61,14 @@ Dict
 
 *** Mutability ***
 - Alle legacy-klasser er immutable
+*** abstract
+ingen instanser (objekter) av klassen kan instansieres ...
+abstrakte klasser fungerer som en slags "mal" for klassene som arver av den
+abstrakte metoder (skjelett-metoder) maa bli @Overrun
+*** final
+konstanter
+*** protected, private
+protected -- kun innad i pakken (arverekken feks)
+private -- kun innad i klassen
+*** hashset
+mengder

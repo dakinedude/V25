@@ -1,0 +1,67 @@
+fmod SALESMAN is
+    protecting NAT . protecting INT .
+    sorts City Cities .
+    subsort City < Cities .
+
+    op none : -> Cities [ctor] .
+    op _;_ : Cities Cities -> Cities [ctor assoc comm id: none] .
+    ops PhnomPenh SiemReap Sisophon Battambang KompongSom : -> City [ctor] .
+
+    op cities : -> Cities .
+    eq cities = PhnomPenh ; SiemReap ; Sisophon ; Battambang ; KompongSom .
+
+    op cost : City City -> NzNat [comm] .
+    eq cost(PhnomPenh, SiemReap) = 2 .
+    eq cost(PhnomPenh, Sisophon) = 9 .
+    eq cost(SiemReap, Sisophon) = 3 .
+    eq cost(SiemReap, KompongSom) = 3 .
+    eq cost(Sisophon, KompongSom) = 7 .
+    eq cost(PhnomPenh, KompongSom) = 4 .
+    eq cost(PhnomPenh, Battambang) = 6 .
+    eq cost(SiemReap, Battambang) = 1 .
+    eq cost(Sisophon, Battambang) = 3 .
+    eq cost(Battambang, KompongSom) = 9 .
+
+    vars C C' C'' : City .
+    var CS CS' CS'' : Cities .
+    var B : Int .
+    var B' : NzNat . 
+    var G : Grid .
+    var N : Node .
+
+    sorts Node Grid .
+    subsort Node < Grid .
+    
+    op city:_rem:_ : City Cities -> Node [ctor] .
+    op __ : Grid Grid -> Grid [ctor assoc comm id: empty] .
+    op empty : -> Grid [ctor] .
+
+    op convert : Cities -> Grid .
+    eq convert(CS) = help(CS, CS) .
+
+    op help : Cities Cities -> Grid .
+    eq help(none, CS) = empty .
+    eq help(C ; CS, CS')
+      = (city: C rem: rmAll(C, CS')) (help(CS, CS')) .
+
+    op rmAll : City Cities -> Cities .
+    eq rmAll(C, none) = none .
+    eq rmAll(C, C' ; CS) = if C == C'
+        then rmAll(C, CS) else C' ; rmAll(C, CS) fi .
+
+    op _in_ : City Cities -> Bool .
+    eq C in none = false .
+    eq C in C' ; CS = (C == C') or C in CS .
+    
+    op main : Cities NzNat -> Bool .
+    eq main(CS, B') = travel(convert(CS), B') .
+
+    op travel : Grid Int -> Bool .
+    ceq travel((city: C rem: none) G, B) = true if B >= 0 .
+    ceq travel((city: C rem: CS) G, B) = false if B < 0 .
+    eq travel(empty, B) = false .
+    eq travel((city: C rem: C' ; CS) G, B)
+      = travel((city: C' rem: CS) G, B - cost(C, C'))
+        or travel(G, B) .
+
+endfm

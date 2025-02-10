@@ -1,0 +1,26 @@
+fmod GRAPH is
+    sort NodeId .
+    sort NodeIdSet .
+    subsort NodeId < NodeIdSet .
+
+    op none : -> NodeIdSet [ctor] .
+    op __ : NodeIdSet NodeIdSet -> NodeIdSet [ctor assoc comm id: none] .
+
+    sort Node .
+    op node:_nbs_: : NodeId NodeIdSet -> Node [ctor] .
+
+    sort Graph .
+    subsort Node < Graph .
+    op emptyGraph : -> Graph [ctor] .
+    op _;_ : Graph Graph -> Graph [ctor assoc comm id: emptyGraph] .
+
+endfm
+
+    *** op graph : -> Graph .
+    *** eq graph
+    ***   = (node: a nbs: b c e)
+    ***     ; (node: b nbs: a f d)
+    ***     ; (node: c nbs: a e)
+    ***     ; (node: d nbs: b f)
+    ***     ; (node: e nbs: a c f)
+    ***     ; (node: f nbs: b d e) .

@@ -1,0 +1,5 @@
+t = f(x, x, f(x, y, z)), s = {x -> a, y -> g(x, y), z -> h(z,z)}
+
+ts = f(a, a, f(a, g(x,y), h(z,z)))
+
+(ts)s = f(a, a, f(a, g(a, g(x,y)), h(h(z,z), h(z,z)))))

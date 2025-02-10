@@ -1,0 +1,23 @@
+fmod EASY is
+    protecting NAT .
+    sorts Set NeSet .
+    subsort Nat < NeSet < Set .
+
+    op e : -> Set [ctor] .
+    op __ : Set Set -> Set [ctor assoc comm id: e] .
+    op __ : NeSet NeSet -> NeSet [ctor assoc comm id: e] .
+
+    vars MS MS' : Set .
+    var N : Nat .
+
+    op sum : Set -> Nat .
+    eq sum(e) = 0 .
+    eq sum(MS N) = N + sum(MS) .
+
+    op subsetSum : Set Nat -> Bool .
+    ceq subsetSum(MS MS', N) = true if sum(MS) == N .
+    eq subsetSum(MS, N) = false [owise] .
+
+endfm 
+        
+    

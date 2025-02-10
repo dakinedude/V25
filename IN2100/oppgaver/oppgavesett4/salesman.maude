@@ -1,0 +1,42 @@
+fmod SALESMAN is
+    protecting INT .
+    sorts City Cities .
+    subsort City < Cities .
+
+    op none : -> Cities [ctor] .
+    op _;_ : Cities Cities -> Cities [ctor assoc comm id: none] .
+    ops PhnomPenh SiemReap Sisophon Battambang KompongSom : -> City [ctor] .
+
+    op cities : -> Cities .
+    eq cities = Sisophon ; Battambang ; SiemReap ; KompongSom ; PhnomPenh .
+
+    op cost : City City -> NzNat [comm] .
+    eq cost(PhnomPenh, SiemReap) = 2 .
+    eq cost(PhnomPenh, Sisophon) = 9 .
+    eq cost(SiemReap, Sisophon) = 3 .
+    eq cost(SiemReap, KompongSom) = 3 .
+    eq cost(Sisophon, KompongSom) = 7 .
+    eq cost(PhnomPenh, KompongSom) = 4 .
+    eq cost(PhnomPenh, Battambang) = 6 .
+    eq cost(SiemReap, Battambang) = 1 .
+    eq cost(Sisophon, Battambang) = 3 .
+    eq cost(Battambang, KompongSom) = 9 .
+
+    var CS CS' : Cities .
+    vars C C' : City .
+    vars B N : Int .
+
+    op sales : Cities Nat -> Bool .
+    ceq sales(C ; CS, B) = true if subsetSum(C, CS, B) == true .
+    eq sales(CS, B) = false [owise] .
+
+    op subsetSum : City Cities Int -> Bool .
+    ceq subsetSum(C, C' ; CS, B)
+      = subsetSum(C', CS, B - cost(C, C'))
+      if cost(C, C') <= B .
+
+    ceq subsetSum(C, none, B) = true if B >= 0 .
+
+    eq subsetSum(C, CS, B) = false [owise] .
+    
+endfm

@@ -1,0 +1,39 @@
+fmod SALESMAN is
+    protecting NAT . protecting INT .
+    sorts City Cities .
+    subsort City < Cities .
+
+    op none : -> Cities [ctor] .
+    op _;_ : Cities Cities -> Cities [ctor assoc comm id: none] .
+    ops PhnomPenh SiemReap Sisophon Battambang KompongSom : -> City [ctor] .
+
+    op cities : -> Cities .
+    eq cities = PhnomPenh ; SiemReap ; Sisophon ; Battambang ; KompongSom .
+
+    op cost : City City -> NzNat [comm] .
+    eq cost(PhnomPenh, SiemReap) = 2 .
+    eq cost(PhnomPenh, Sisophon) = 9 .
+    eq cost(SiemReap, Sisophon) = 3 .
+    eq cost(SiemReap, KompongSom) = 3 .
+    eq cost(Sisophon, KompongSom) = 7 .
+    eq cost(PhnomPenh, KompongSom) = 4 .
+    eq cost(PhnomPenh, Battambang) = 6 .
+    eq cost(SiemReap, Battambang) = 1 .
+    eq cost(Sisophon, Battambang) = 3 .
+    eq cost(Battambang, KompongSom) = 9 .
+
+    vars START CUR POT : City .
+    var CS REM SKIP : Cities .
+    var B : Int .
+    var NZNAT : NzNat .
+
+    op main : Cities Nat -> Bool .
+    eq main(START ; CS, NZNAT) = ts(START, START, CS, none, NZNAT) .
+
+    op ts : City City Cities Cities Int -> Bool .
+    eq ts(START, CUR, none, none, B) = cost(START, CUR) <= B .
+    eq ts(START, CUR, none, POT ; SKIP, B) = false .
+    eq ts(START, CUR, POT ; REM, SKIP, B)
+      = ts(START, POT, REM ; SKIP, none, B - cost(CUR, POT))
+        or ts(START, CUR, REM, POT ; SKIP, B) .
+endfm

@@ -1,3 +1,26 @@
-fmod UNBOUND is
+fmod UNBOUND is protecting NAT .
+    sort MSet .
+    subsort NzNat < MSet .
 
+    op none : -> MSet [ctor] .
+    op __ : MSet MSet -> MSet [ctor assoc comm id: none] .
+
+    vars NZN NZN1 NZN2 : NzNat .
+    var S : MSet .
+
+    op unbound : MSet NzNat -> Bool .
+
+    eq unbound(none, NZN) = false .
+    eq unbound(NZN S, NZN) = true .
+
+    ceq unbound(NZN1 S, NZN2)
+      = unbound(NZN1 S, sd(NZN2, NZN1)) *** pick NZN1
+        or unbound(S, NZN2) *** or dont't pick NZN1
+      if NZN2 > NZN1 .
+
+    ceq unbound(NZN1 S, NZN2)
+      = unbound(S, NZN2) if NZN1 > NZN2 . *** cannot pick NZN1
 endfm
+
+*** NP complete: given a solution, it's easy to add up the products,
+*** But requires significant effort to actually test all possible candidates.

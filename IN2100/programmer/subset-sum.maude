@@ -1,0 +1,23 @@
+fmod SUBSET-SUM is protecting NAT .
+    sort MSet .
+    subsort NzNat < MSet .
+
+    op none : -> MSet [ctor] .
+    op __ : MSet MSet -> MSet [ctor assoc comm id: none] .
+
+    vars NZN NZN1 NZN2 : NzNat .
+    var S : MSet .
+
+    op subsetSum : MSet NzNat -> Bool .
+
+    eq subsetSum(none, NZN) = false .
+    eq subsetSum(NZN S, NZN) = true .
+
+    ceq subsetSum(NZN1 S, NZN2)
+      = subsetSum(S, sd(NZN2, NZN1)) *** pick NZN1
+        or subsetSum(S, NZN2) *** or dont't pick NZN1
+      if NZN2 > NZN1 .
+
+    ceq subsetSum(NZN1 S, NZN2)
+      = subsetSum(S, NZN2) if NZN1 > NZN2 . *** cannot pick NZN1
+endfm

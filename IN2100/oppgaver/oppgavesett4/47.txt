@@ -1,0 +1,19 @@
+1.
+g(x) does not match h(g(a)), because there is no substitution S
+for x such that g(xS) = h(g(a)). Matching is done to variables.
+
+2. f(x,x) matches not f(a, b). x can only be substituted with one
+variable. It does not match f(a,z)
+
+3. Yes. S = {x-> g(a), y-> g(a)}
+
+4. Two, both the first and second subterms are matched (x goes to a)
+
+5. Yes
+
+x -> s(0 + s(0)) , y-> 0
+
+x -> 0 , y -> s(0)
+
+6. No, and comm. does not matter, because matching only takes
+the position of the subterms into account. Thus position 1.1 != 1.2.
