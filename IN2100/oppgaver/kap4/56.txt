@@ -1,0 +1,2 @@
+f(a,b) -> a
+f(a,b,g(a,b)) -> f(g(a,b), g(a,b), g(a,b)) -> f(a,a,a) -> f(g(a,b)...)

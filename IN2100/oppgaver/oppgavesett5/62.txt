@@ -1,0 +1,15 @@
+1. x ** 0 = s(0)
+2. x ** s(y) = x * (x ** y)
+
+1. **(x, 0) = s(0)
+lpo2: ** > s
+**(x, 0) > 0 holds from lpo1: 0 = 0
+
+2. **(x, s(y)) = *(x, **(x, y))
+lpo2: ** > *
+**(x, s(y)) > x holds from lpo1
+**(x, s(y)) > **(x, y)
+compare lexocraphically:
+(x, s(y)) > (x, y) holds
+**(x, s(y)) > y holds from lpo1:
+s(y) > y, because y = y.

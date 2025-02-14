@@ -1,0 +1,14 @@
+fmod TURING is
+    sorts State Symbol Delimiter Tape .
+    ops q0 ... qn : -> State [ctor] .
+    ops s1 ... sm B : -> Symbol [ctor] .
+    ops [ ] : -> Delimiter [ctor] .
+    subsort State Symbol Delimiter < Tape .
+    op __ : Tape Tape -> Tape [ctor assoc] .
+
+    var SYMBOL : Symbol .
+    eq SYMBOL q s = q' SYMBOL s' .
+    eq [ q s = [ q' B s' .
+    
+endfm
+     

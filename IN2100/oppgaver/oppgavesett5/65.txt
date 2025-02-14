@@ -1,0 +1,13 @@
+Assume the spec:
+
+{f(s(x), x, x) = f(x, f(s(x), x, x), s(x))}
+
+w/o the cond., the spec would hold, due to the lex.comp
+
+(s(x), x, x) > (x, f(s(x), x, x), s(x)) holding.
+
+However, f(s(x), x, x) > f(s(x), x, x) does NOT hold,
+because > is a strict partial order.
+
+We need this condition to ensure that the recursive positions
+are increasing; we cannot simply rely on decreasing lexicographic order.

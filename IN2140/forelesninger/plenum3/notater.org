@@ -1,0 +1,37 @@
+*** Three I/O streams:
+stdin, stdout, stderr (unbuffered -- always use)
+
+read / fread --> read from a file descriptor
+
+If not entering blocking call when doing read:
+It will be running state continously,
+eating up CPU (useful for latency/ real time systems)
+
+*** Interrupt Program Execution
+CTRL-C: SIGINT is a keybaoard interrupt
+
+-O3 flag in compilation
+
+volatile tells the compiler something can be changed at any time by anything
+
+*** Makefiles
+A set on rules: "to make some file, you need so-and-so files"
+
+*** Memory management
+Changing floppies back and forth is similar to today's swapping
+
+*** Memory
+DATA segment contains the global vars
+
+Heap is for dynamically stored memory
+
+example:
+
+Input is a steam of ascii numbers
+output is the "sum" of these nums
+
+1. Conserve RAM (Dont need everything in RAM all the time)
+2. Share RAM between processes
+3. Protect processes' RAM from others
+
+MMU (memory management unit) translates adresses from virtual memory to physical memory

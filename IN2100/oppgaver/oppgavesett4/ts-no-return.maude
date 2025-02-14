@@ -1,4 +1,4 @@
-fmod SALESMAN is
+fmod SALESMAN-NO-RET is
     protecting NAT . protecting INT .
     sorts City Cities .
     subsort City < Cities .
@@ -22,18 +22,21 @@ fmod SALESMAN is
     eq cost(Sisophon, Battambang) = 3 .
     eq cost(Battambang, KompongSom) = 9 .
 
-    vars START CUR POT : City .
+    vars CUR POT NXT : City .
     var CS REM SKIP : Cities .
     var B : Int .
     var NZNAT : NzNat .
 
     op main : Cities Nat -> Bool .
-    eq main(START ; CS, NZNAT) = ts(START, START, CS, none, NZNAT) .
+    eq main(CUR ; POT ; CS, NZNAT) = ts(CUR, POT ; CS, none, NZNAT) or
+        ts(POT, CS, POT, NZNAT) . *** checking all potential starting cities
 
-    op ts : City City Cities Cities Int -> Bool .
-    eq ts(START, CUR, none, none, B) = cost(START, CUR) <= B .
-    eq ts(START, CUR, none, POT ; SKIP, B) = false .
-    eq ts(START, CUR, POT ; REM, SKIP, B)
-      = ts(START, POT, REM ; SKIP, none, B - cost(CUR, POT))
-        or ts(START, CUR, REM, POT ; SKIP, B) .
+    op ts : City Cities Cities Int -> Bool .
+    eq ts(CUR, NXT, none, B) = cost(CUR, NXT) <= B .
+    ceq ts(CUR, REM, SKIP, B) = false if B < 0 .
+    eq ts(CUR, none, POT ; SKIP, B) = false .
+
+    eq ts(CUR, NXT ; REM, SKIP, B)
+      = ts(NXT, REM ; SKIP, none, B - cost(NXT, CUR)) *** take the union of REM and SKIP
+        or ts(CUR, REM, NXT ; SKIP, B) . *** skip the potential candidate
 endfm

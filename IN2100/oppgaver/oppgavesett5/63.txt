@@ -1,0 +1,68 @@
+### 5.
+
+{
+f(s(y), x, z) = f(y, +(x, +(y, z)),  +(z, z))
+}
+
+Assume f > + > s > x > z
+
+Compared lexographically (lpo3):
+s(y) > y holds
+
+then:
+f(s(y), x, z) > +(x, +(y, z))
+
+f > + holds
+f(s(y), x, z) > x holds, because lhs contains x
+
+f(s(y), x, z) > +(y, z) holds, because f > + and
+f(s(y), x, z) > y because s(y) > y (lpo1), and z is contained in both.
+
+then:
+f(s(y), x, z) > +(z,z)
+
+f > + holds
+then, f(s(y), x, z) > z, because it is contained.
+
+Thus, the system terminates.
+
+### 6.
+{x ∗ (y + z) = (x ∗ y) + (x ∗ z)}
+
+Rewritten to preorder for clarity
+
+*(x, +(y,z)) = +(*(x,y), *(x,z))
+
+lpo2:
+* > + holds
+
+then:
+*(x, +(y,z)) > *(x,y)
+using lpo3:
++(y,z) > y, because y is contained
+
+then:
+*(x, +(y,z)) > *(x,z)
+using lpo3:
++(y,z) > z, because z is contained
+
+Thus, the system terminates.
+
+### 7.
+{ ack(0, x) = s(x),
+ack(s(x), 0) = ack(x, s(0)),
+ack(s(x), s(y)) = ack(x, ack(s(x), y))}
+
+assume ack > s > 0
+
+thus eq1 holds; x is contained
+
+eq2 lpo3 holds lexographically;
+ack(s(x), 0) > s(0), because ack > s and 0 is contained
+
+eq3 holds lexographically, because s(x) > x
+then:
+ack(s(x), s(y)) > ack(s(x), y) holds lexo.,
+then ack(s(x), s(y)) > y, because s(y) > y (contained)
+
+Thus, the Ackermann function holds.

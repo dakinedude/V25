@@ -1,0 +1,36 @@
+*** FIFO
+FIFO paa primaerminnet gjoer ingenting hvis en page allerede er i minne
+
+ABCA gir
+1234
+
+    CBA
+latest <-> oldest
+
+*** Second chance
+refernce string: ABCDAEFGHI
+
+DCBA
+0001
+
+A faar 1 som R bit etter andre gang
+
+Ellers fifo
+
+Naar minnet er fullt, hvis den siste page har referansebit 1, blir den satt foran, biten blir satt til 0, og deretter blir
+pagen pushet inn.
+
+*** CLOCK
+Ringbuffer med peker som "klokkeviser"
+Til aa begynne med har alle R-bit lik 0
+Hvis en page leses igjen, setter R-bit til 1
+Hvis bufferet er fullt, og pekeren peker paa en page med 1 R-bit, settes R-bit til 0flyttes pekeren et steg videre, og
+kaster ut den foerste den finner med R-bit lik 0, og seter inn elementet der.
+*** LEAST RECENTLY USED (LRU) (Most common algorithm?)
+Alle elementer som aksesseres hyppig, ligger paa inputsiden, resten ligger
+lengre ut
+Hvis vi leter etter A, og A er i listen, setter vi A foerst i listen, og stokker om listen
+Og slik fortsetter vi, og pusher ut elementene som det er lengst tid siden, ble aksessert
+Denne algoritmen er enkel, effektiv og DYR. CPU vs diskutbytting.
+Kanskje ikke saa bra for f.eks. videoavspilling
+*** Disk scheduling

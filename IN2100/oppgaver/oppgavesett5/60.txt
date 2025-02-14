@@ -1,0 +1,26 @@
+{f(g(h(x))) = f(f(x)),
+f(x) = g(x),
+f(g(h(x))) = g(g(x)),
+g(x) = h(x),
+f(g(h(x))) = h(h(x))}
+
+Assume the weights:
+
+weight(f(x)) = 4 + weight(x)
+weight(g(x)) = 3 + weight(x)
+weight(h(x)) = 2 + weight(x)
+weight(a) = 1, for all constants a
+
+weight(f(g(h(x)))) = 4 + 3 + 2 + weight(x) = 9
+> 4 + 4 + weight(x) = weight(f(f(x)))
+
+weight(f(x)) = 4 + weight(x)
+> 3 + weight(x) = weight(g(x))
+
+weight(fghx) = 4 + 3 + 2 + w(x)
+> 3 + 3 + w(x) = ggx
+
+w(gx) = 3 + wx > 2 + wx = w(hx)
+
+weight(fghx) = 4 + 3 + 2 + w(x)
+> 2 + 2 + wx = hhx

@@ -1,0 +1,40 @@
+1.
+int x := m;
+int y := n;
+while (x>2 and y>0) {
+if x>y then {
+   x := x-1;
+   y := x+y;
+   } else {
+    y := y/2; 
+   } 
+}
+
+In the case that neither x>2 or y>0, the
+program clearly terminates.
+
+Otherwise:
+
+if x > y:
+At some point, x will reach -1.
+
+Assigning reasonable weights to equation
++(-(x, 1), y) = -(x, 1):
+It is trivial to observe that lhs weighs more than rhs.
+
+As for the else statement:
+/(y, 2)
+Is always strictly decreasing.
+
+2.
+% is a stricly decreasing function --
+at some point, it will reach 0.
+
+Furthermore: Assigning y to x and r to y,
+gives a transitive, strictly decreasing property.
+
+%(x, y) = r 
+%(y, %(x,y)) = r
+
+Assuming a reasonable weight, it is clear
+that lfs weighs less than rhs.

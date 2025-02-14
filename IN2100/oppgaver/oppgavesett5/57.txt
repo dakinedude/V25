@@ -1,0 +1,15 @@
+{f(h(x, y)) = h(x, x)}
+
+assume that:
+weight(f(x)) = 3 + weight(x)
+weight(h(x, y)) = 2 + weight(x) + weight(y)
+weight(a) = 1, for all constants a
+
+weight(f(h(x, y)))
+= 3 + weight(h(x,y))
+= 2 + 3 + weight(x) + weight(y)
+> 2 + weight(x) + weight(x)
+= weight(h(x,x))
+
+Since the lefthand side weights more than
+the righthand side, the system terminates

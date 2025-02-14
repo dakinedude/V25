@@ -1,0 +1,10 @@
+{
+f(a, b, x) = f(x, x, x),
+g(x, y) = x,
+g(x, y) = y
+}
+
+f(a,b,g(a,b))
+~> f(g(a,b),g(a,b),g(a,b))
+~> f(a, b, g(a,b))
+~> ...

@@ -1,0 +1,19 @@
+1.
+
+Yes
+
+{f (a, b, x) = f (x, x, x)},
+union
+{g (y , z) = y, g (y , z) = z}
+
+2.
+Yes
+
+{f (a, b, x) = f (x, x, x)},
+union
+{g (y , z) = y, g(y,z) = z, f(b,b,b) = b}
+
+Yes and yes
+
+You can add more and more to the one above;
+it won't fix the nonterminating issue

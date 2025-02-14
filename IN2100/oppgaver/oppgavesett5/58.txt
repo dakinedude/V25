@@ -1,0 +1,28 @@
+Proving that the weight function for
+{f(f(x)) = f(g(f(x)))}
+that assigns weight based on "the number of adj. f's"
+is not monotonic:
+
+Assume that weight(f(f(x))) = 1
+
+Assume that the weight function is monotonic.
+
+That means that f(t) > f(u), if t > u.
+
+Thus the system clearly terminates, due to the lh side
+having one pair of adj. f's.
+
+f(f(f(x))) > f(f(g(f(x)))) should hold, in adherence to
+the assumption.
+
+weight(f(f(f(x))))
+= 1 + weight(f(x))
+
+weight f(f(g(f(x))))
+= 1 + weight(g(f(x)))
+= 1 + weight(f(x))
+
+We thus have obtained a contradiction, following the assumption
+that the weight function is question, is monotonic.
+
+Thus, it cannot be monotonic.
