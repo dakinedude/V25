@@ -31,7 +31,7 @@ fmod LIST-NAT1 is protecting NAT . protecting BOOLEAN .
     eq concat(L, L' N) = concat(L, L') N .
 
     eq insert(N, nil) = nil N .
-   eq insert(N, L N') = insert(N, L) N' .
+    eq insert(N, L N') = insert(N, L) N' .
 
     eq first(nil) = 0 . *** Default error value?
     eq first(nil N) = N .

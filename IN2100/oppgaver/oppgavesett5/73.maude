@@ -28,58 +28,77 @@ fmod LPO is
     op _>>_ : Precedence Precedence -> Precedence
         [ctor assoc id: emptyPrecedence] .
 
-    op p : -> Precedence .
-    eq p =  ack >> f >> g >> h .
+    *** op p : -> Precedence .
+    *** eq p =  ack >> f >> g >> h .
 
     op index : FuncSymbol Precedence -> Nat .
     eq index(F, F >> P) = 1 .
     ceq index(F, G >> P) = index(F, P) + 1 if not F == G .
 
-    vars F G H : FuncSymbol .
-    var P : Precedence .
     op _>>_in_ : FuncSymbol FuncSymbol Precedence -> Bool .
     eq F >> G in P
       = if index(F, P) < index(G, P) then true else false fi .
 
+    vars F G H : FuncSymbol .
+    var P : Precedence .
     vars T U V W : Term .
-    var TL TL' : TermList .
-    vars FS FS' : FuncSymbol .
-    vars VS VS' VS'' : VarSymbol .
+    var TL UL : TermList .
+    vars X Y Z : VarSymbol .
+    var E : Equation .
+    var ES : EquationSet .
 
     op lpoTerm : EquationSet Precedence -> Bool .
-    eq lpoTerm((eq F[T, TL] = G[U, TL'] .), P) = lpo(F[T, TL], G[U, TL'], P) .
+    eq lpoTerm(none, P) = true .
+    eq lpoTerm((eq F[TL] = G[UL] .), P) = lpo(F[TL], G[UL], P) .
+    eq lpoTerm(E ES, P) = lpoTerm(E, P) and lpoTerm(ES, P) .
 
     op lpo : Term Term Precedence -> Bool .
-    *** eq lpo(F[], U, P) = false .
-    *** eq lpo(T, G[], P) = false .
-    ceq lpo(F[T, TL], G[U, TL'], P)
-      = lpo1(F[T, TL], U) or lpo2(F[T, TL], G[U, TL'])
-      if not F == G .
-    eq lpo(F[T, TL], F[U, TL'], P) = lpo3(F[T, TL], F[U, TL'], P) .
-    eq lpo(T, VS', P) = lpo1(T, VS', P) .
-    eq lpo(T, (U, TL)) = lpo(T, U) and lpo(T, TL) .
-
-    *** op lpo1 : Term Term Precedence -> Bool .
-    *** eq lpo1(F[], U, P) = false .
-    *** eq lpo1(F[T, TL], VS, P) = T >> VS in P or lpo(F[TL], VS, P) .
-    *** ceq lpo1(T, U, P) = true if (T == U) .
-    *** eq lpo1(F[T, TL], G[TL'], P) = lpo(T, G[TL'], P) or lpo1(F[TL], G[TL'], P) .
-
-    *** op lpo2 : Term Term Precedence -> Bool .
-    *** eq lpo2(T, G[]) = true .
-    *** eq lpo2(F[T, TL], G[U, TL'], P)
-    ***   = if ((F >> G in P)
-    ***       and lpo(F[T, TL], U, P) and lpo2(F[T, TL], G[TL'], P)) then true else false fi .
-
-    *** op lpo3 : Term Term Precedence -> Bool .
-    *** eq lpo3(F[T, TL], F[U, TL'], P) =
-    ***     lex>((T, TL), (U, TL'))
-    ***     and helper(F[T, TL], (U, TL'), P) .
-
-    op helper : Term TermList -> Bool .
+    ceq lpo(F[TL], G[UL], P) = lpo1(F[TL], G[UL], P) or lpo2(F[TL], G[UL], P)
+      if not (F == G) .
+    eq lpo(F[TL], F[UL], P) = lpo3(F[TL], F[UL], P) .
+    eq lpo(X, T, P) = false .
+    eq lpo(F[T], X, P) = lpo1(F[T], X, P) .
+    eq lpo(T, F, P) = lpo1(T, F, P) .
+    eq lpo(F, G, P) = F >> G in P .
     
-    *** op lex> -> TermList TermList Precedence -> Bool .
-    *** eq lex>(T, U, P) = if T >> U in P then true else false fi .
-    *** eq lex>((T, TL), (U, TL'), P) = lex>((T), (U), P) and lex>((TL), (TL'), P) .
+    op lpo1 : Term Term Precedence -> Bool .
+    eq lpo1(F, G, P) = F >> G in P .
+    eq lpo1(F[T], U, P) = (T == U or lpo(T, U, P)) .
+    eq lpo1(F[T, TL], U, P) = (T == U or lpo(T, U, P))
+        or lpo1(F[TL], U, P) .
+
+    op lpo2 : Term Term Precedence -> Bool .
+    eq lpo2(F[TL], G[U], P)
+      = (F >> G in P) and lpo(F[TL], U, P) .
+    eq lpo2(F[TL], G[U, UL], P)
+      = (F >> G in P) and lpo(F[TL], U, P) and lpo2(F[TL], G[UL], P) .
+
+    op lpo3 : Term Term Precedence -> Bool .
+    eq lpo3(F[T, TL], G[U, UL], P)
+      = lex>(TL, UL, P) and help(F[TL], G[UL], P) .
+
+    op help : Term Term Precedence -> Bool .
+    eq help(T, G[U], P) = lpo(T, U, P) .
+    eq help(T, G[U, UL], P) = lpo(T, U, P) and help(T, G[UL], P) .
+
+    op lex> : TermList TermList Precedence -> Bool .
+    eq lex>(T, U, P) = lpo(T, U, P) .
+    ceq lex>(TL, UL, P) = true if lpo(first(TL), first(UL), P) .
+    ceq lex>(TL, UL, P) = false if not lpo(first(TL), first(UL), P) and not first(TL) == first(UL) .
+    ceq lex>(TL, UL, P) = lex>(rest(TL), rest(UL), P) if first (TL) == first(UL) .
+
+    op rest : TermList -> TermList .
+    eq rest((T, TL)) = TL .
+
+    op first : TermList -> Term .
+    eq first((T, TL)) = T .
     
 endfm
+
+red lpoTerm(eq f[a, b, a] = f[a, b, b] .
+    eq f[a, a, b] = f[a, b, a] .
+    eq f[b, b, f[a, b, a]] = f[a, b, a] ., f >> a >> b) .
+
+red lpoTerm(eq f[a, b, a] = f[a, b, b] .
+    eq f[a, a, b] = f[a, b, a] .
+    eq f[b, b, f[a, b, a]] = f[a, b, a] ., f >> b >> a) .
